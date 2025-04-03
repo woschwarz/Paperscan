@@ -5,7 +5,7 @@ Begin WebDialog ViewerDialog
    ControlID       =   ""
    CSSClasses      =   ""
    Enabled         =   True
-   Height          =   630
+   Height          =   770
    Index           =   -2147483648
    Indicator       =   0
    LayoutDirection =   0
@@ -22,7 +22,7 @@ Begin WebDialog ViewerDialog
    TabIndex        =   0
    Top             =   0
    Visible         =   True
-   Width           =   800
+   Width           =   900
    _mDesignHeight  =   0
    _mDesignWidth   =   0
    _mPanelIndex    =   -1
@@ -30,7 +30,7 @@ Begin WebDialog ViewerDialog
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
-      Height          =   590
+      Height          =   730
       Index           =   -2147483648
       Indicator       =   ""
       Left            =   20
@@ -38,7 +38,7 @@ Begin WebDialog ViewerDialog
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
       PanelIndex      =   0
@@ -49,7 +49,7 @@ Begin WebDialog ViewerDialog
       Top             =   20
       UseSandbox      =   False
       Visible         =   True
-      Width           =   420
+      Width           =   520
       _mPanelIndex    =   -1
    End
    Begin WebLabel lblFilename
@@ -63,12 +63,12 @@ Begin WebDialog ViewerDialog
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
-      Left            =   473
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
@@ -97,12 +97,12 @@ Begin WebDialog ViewerDialog
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
-      Left            =   473
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
@@ -131,12 +131,12 @@ Begin WebDialog ViewerDialog
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
-      Left            =   473
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
@@ -165,12 +165,12 @@ Begin WebDialog ViewerDialog
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
-      Left            =   473
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
@@ -199,12 +199,12 @@ Begin WebDialog ViewerDialog
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
-      Left            =   473
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
@@ -234,7 +234,7 @@ Begin WebDialog ViewerDialog
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   473
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -267,8 +267,8 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Hint            =   ""
       Index           =   -2147483648
-      indicator       =   0
-      Left            =   473
+      Indicator       =   0
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -301,8 +301,8 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Hint            =   ""
       Index           =   -2147483648
-      indicator       =   0
-      Left            =   473
+      Indicator       =   0
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -335,8 +335,8 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Hint            =   ""
       Index           =   -2147483648
-      indicator       =   0
-      Left            =   473
+      Indicator       =   0
+      Left            =   573
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -365,11 +365,11 @@ Begin WebDialog ViewerDialog
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
-      Height          =   205
+      Height          =   345
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   473
+      Left            =   573
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -402,7 +402,7 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Index           =   -2147483648
       Indicator       =   1
-      Left            =   680
+      Left            =   789
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -416,7 +416,67 @@ Begin WebDialog ViewerDialog
       TabIndex        =   12
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   572
+      Top             =   712
+      Visible         =   True
+      Width           =   91
+      _mPanelIndex    =   -1
+   End
+   Begin WebButton Button1
+      AllowAutoDisable=   False
+      Cancel          =   False
+      Caption         =   "Print"
+      ControlID       =   ""
+      CSSClasses      =   ""
+      Default         =   False
+      Enabled         =   True
+      Height          =   38
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   689
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      LockVertical    =   False
+      Outlined        =   False
+      PanelIndex      =   0
+      Scope           =   0
+      TabIndex        =   13
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   712
+      Visible         =   True
+      Width           =   78
+      _mPanelIndex    =   -1
+   End
+   Begin WebButton Button2
+      AllowAutoDisable=   False
+      Cancel          =   False
+      Caption         =   "Download"
+      ControlID       =   ""
+      CSSClasses      =   ""
+      Default         =   False
+      Enabled         =   True
+      Height          =   38
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   573
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      LockVertical    =   False
+      Outlined        =   False
+      PanelIndex      =   0
+      Scope           =   0
+      TabIndex        =   14
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   712
       Visible         =   True
       Width           =   100
       _mPanelIndex    =   -1
@@ -487,6 +547,28 @@ End
 	#tag Event
 		Sub Pressed()
 		  Self.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Button1
+	#tag Event
+		Sub Pressed()
+		  HTMLViewer1.Print
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Button2
+	#tag Event
+		Sub Pressed()
+		  Session.PDFFile = Nil
+		  Session.PDFFile = New WebFile
+		  
+		  Session.PDFFile.MIMEType = "application/pdf"
+		  Session.PDFFile = webfile.Open(Session.PDFFolderItem)
+		  Session.PDFFile.ForceDownload = True
+		  
+		  If Session.PDFFile.Download Then
+		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents

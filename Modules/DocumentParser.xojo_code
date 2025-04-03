@@ -2,7 +2,14 @@
 Protected Module DocumentParser
 	#tag Method, Flags = &h0
 		Function GetText(filename As Folderitem) As String
-		  Var shcommand As String = "pdftotext -layout -enc UTF-8 '" + filename.NativePath + "' -"
+		  Var shcommand As String
+		  
+		  // The correct path must be used in Debug mode
+		  #If DebugBuild Then
+		    shcommand = "/opt/homebrew/bin/" //macOS
+		  #EndIf
+		  
+		  shcommand = shcommand  + "pdftotext -layout -enc UTF-8 '" + filename.NativePath + "' -"
 		  
 		  System.DebugLog(shcommand)
 		  
@@ -27,7 +34,14 @@ Protected Module DocumentParser
 
 	#tag Method, Flags = &h0
 		Function MakeThumbnail(inputFile As FolderItem, outputFile As FolderItem) As Boolean
-		  Var shcommand As String = "gs -q -dNOPAUSE -sDEVICE=png16m -sOutputFile='" + outputFile.NativePath + ".png' -dLastPage=1 '" + inputFile.NativePath + "' -c quit"
+		  Var shcommand As String
+		  
+		  // The correct path must be used in Debug mode
+		  #If DebugBuild Then
+		    shcommand = "/opt/homebrew/bin/" //macOS
+		  #EndIf
+		  
+		  shcommand = shcommand + "gs -q -dNOPAUSE -sDEVICE=png16m -sOutputFile='" + outputFile.NativePath + ".png' -dLastPage=1 '" + inputFile.NativePath + "' -c quit"
 		  
 		  Var s As Shell
 		  s = New Shell
@@ -91,6 +105,14 @@ Protected Module DocumentParser
 			Visible=true
 			Group="Position"
 			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="lastExitCode"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

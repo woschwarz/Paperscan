@@ -61,6 +61,75 @@ Protected Module DocumentParser
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub ParsePDF(pdfFilename As String)
+		  System.DebugLog("Start parsing " + pdfFilename)
+		  
+		  Var f As FolderItem
+		  f = New FolderItem(App.inputFolder.Child(pdfFilename)) 
+		  
+		  
+		  Var parsedPDF As String = GetText(f)
+		  
+		  If parsedPDF = "Error" Then 
+		    Exit
+		  End If
+		  
+		  
+		  If Len(parsedPDF) > 25 Then
+		    // Document has more than 25 characters, then it will be processed
+		    
+		    // Make a Thumbnail Image
+		    Var g As FolderItem = App.thumbnailFolder.Child(pdfFileName)
+		    If MakeThumbnail(f, g) Then
+		      System.DebugLog("Thumbnail created")
+		    Else
+		      System.DebugLog("Thumbnail error")
+		    End If
+		    
+		    // Move PDF File to Media/Document Folder and save in Database
+		    Var h As FolderItem = App.documentFolder.Child(pdfFileName)
+		    If h <> Nil Then
+		      f.MoveTo(h) 'If the Filename is already exists it cannot be moved
+		      
+		      // Save in Database
+		      Var row As New DatabaseRow
+		      
+		      row.Column("filename").StringValue = f.Name
+		      row.Column("content").StringValue = parsedPDF
+		      row.Column("created").StringValue = f.CreationDateTime.SQLDateTime
+		      row.Column("modified").StringValue = f.ModificationDateTime.SQLDateTime
+		      row.Column("added").StringValue = DateTime.Now.SQLDateTime
+		      
+		      Try
+		        Session.imcDB.AddRow("documents", row)
+		        System.DebugLog("Importin DB " + pdfFileName)
+		      Catch e As DatabaseException
+		        MessageBox("Error: " + e.Message)
+		        System.DebugLog(e.Message)
+		      End Try
+		      
+		      
+		    End If
+		    
+		  Else
+		    // Document has less than 25 characters, then run OCR
+		    
+		    'ToDo
+		    
+		  End If
+		  
+		  If lastExitCode = 0 Then
+		    // Parsing finished
+		  End If
+		  
+		  Exception err As IOException
+		    System.DebugLog("an IO exception occurred (UploadFileContainer/ProcessPDF/Moveto)")
+		    
+		    
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		lastExitCode As Integer

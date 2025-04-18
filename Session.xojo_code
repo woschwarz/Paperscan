@@ -11,38 +11,6 @@ Inherits WebSession
 #tag EndSession
 	#tag Event
 		Sub Opening()
-		  // Check Folder if Exists, when not create it
-		  
-		  //Parent
-		  Var paperlessFolder As FolderItem = SpecialFolder.Documents.Child("Paperscan")
-		  
-		  If Not paperlessFolder.Exists Then
-		    paperlessFolder.CreateFolder
-		  End If
-		  
-		  //Child 
-		  If Not App.databaseFolder.Exists Then
-		    App.databaseFolder.CreateFolder
-		  End If
-		  
-		  If Not App.inputFolder.Exists Then
-		    App.inputFolder.CreateFolder
-		  End If
-		  
-		  //Child Media
-		  If Not App.mediaFolder.Exists Then
-		    App.mediaFolder.CreateFolder
-		  End If
-		  
-		  If Not App.thumbnailFolder.Exists Then
-		    App.thumbnailFolder.CreateFolder
-		  End If
-		  
-		  If Not App.documentFolder.Exists Then
-		    App.documentFolder.CreateFolder
-		  End If
-		  
-		  
 		  // Init Database
 		  imcDB = New imcDatabase
 		End Sub

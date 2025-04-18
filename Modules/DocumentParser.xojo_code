@@ -5,7 +5,7 @@ Protected Module DocumentParser
 		  Var shcommand As String
 		  
 		  // The correct path must be used in Debug mode
-		  #If DebugBuild Then
+		  #If TargetMacOs and DebugBuild Then
 		    shcommand = "/opt/homebrew/bin/" //macOS
 		  #EndIf
 		  

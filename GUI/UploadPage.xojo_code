@@ -44,7 +44,7 @@ Begin WebPage UploadPage
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   143
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -59,10 +59,10 @@ Begin WebPage UploadPage
       TabIndex        =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   20
+      Top             =   76
       UploadTimeout   =   0
       Visible         =   True
-      Width           =   321
+      Width           =   444
       _mPanelIndex    =   -1
    End
    Begin WebButton btnUpload
@@ -90,7 +90,7 @@ Begin WebPage UploadPage
       TabIndex        =   1
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   20
+      Top             =   76
       Visible         =   True
       Width           =   100
       _mPanelIndex    =   -1
@@ -107,7 +107,7 @@ Begin WebPage UploadPage
       HasBorder       =   True
       HasHeader       =   True
       HeaderHeight    =   0
-      Height          =   233
+      Height          =   194
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
@@ -135,7 +135,7 @@ Begin WebPage UploadPage
       TabIndex        =   2
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   96
+      Top             =   135
       Visible         =   True
       Width           =   560
       _mPanelIndex    =   -1
@@ -204,34 +204,32 @@ Begin WebPage UploadPage
       Width           =   421
       _mPanelIndex    =   -1
    End
-   Begin WebButton btnBack
-      AllowAutoDisable=   False
-      Cancel          =   False
-      Caption         =   "< Back"
+   Begin WebToolbar1 WebToolbar11
       ControlID       =   ""
       CSSClasses      =   ""
-      Default         =   False
       Enabled         =   True
-      Height          =   38
+      FullWidth       =   False
+      Height          =   56
       Index           =   -2147483648
-      Indicator       =   0
-      Left            =   20
+      Indicator       =   ""
+      Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      Outlined        =   False
       PanelIndex      =   0
+      Position        =   ""
       Scope           =   0
       TabIndex        =   5
       TabStop         =   True
+      Title           =   ""
       Tooltip         =   ""
-      Top             =   20
+      Top             =   0
       Visible         =   True
-      Width           =   100
+      Width           =   600
       _mPanelIndex    =   -1
    End
 End
@@ -239,7 +237,8 @@ End
 
 #tag WindowCode
 	#tag Event
-		Sub Opening()
+		Sub Shown()
+		  lblStatus.Text = ""
 		  LoadFileList
 		End Sub
 	#tag EndEvent
@@ -258,7 +257,7 @@ End
 		  
 		  
 		  For Each file As Folderitem In App.inputFolder.Children
-		    If file <> Nil And file.Visible Then
+		    If file <> Nil And file.Visible And Not file.IsFolder Then
 		      UploadList.AddRow(file.Name)
 		      
 		      Var modDate As String
@@ -273,6 +272,7 @@ End
 		    
 		    
 		  Next
+		  
 		End Sub
 	#tag EndMethod
 
@@ -321,7 +321,7 @@ End
 		  
 		  For Each file As Folderitem In App.inputFolder.Children
 		    
-		    If file <> Nil And file.Visible Then
+		    If file <> Nil And file.Visible And Not file.IsFolder Then
 		      lblStatus.Text = "Start parsing " + file.name
 		      DocumentParser.ParsePDF(file.name)
 		      i = i + 1
@@ -333,13 +333,6 @@ End
 		  Next
 		  
 		  LoadFileList
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events btnBack
-	#tag Event
-		Sub Pressed()
-		  MainPage.Show
 		End Sub
 	#tag EndEvent
 #tag EndEvents

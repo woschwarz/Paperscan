@@ -33,36 +33,6 @@ Begin WebPage MainPage
    _mDesignHeight  =   0
    _mDesignWidth   =   0
    _mPanelIndex    =   -1
-   Begin WebButton btnUpload
-      AllowAutoDisable=   False
-      Cancel          =   False
-      Caption         =   "Upload"
-      ControlID       =   ""
-      CSSClasses      =   ""
-      Default         =   False
-      Enabled         =   True
-      Height          =   38
-      Index           =   -2147483648
-      Indicator       =   0
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Outlined        =   False
-      PanelIndex      =   0
-      Scope           =   2
-      TabIndex        =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   20
-      Visible         =   True
-      Width           =   100
-      _mPanelIndex    =   -1
-   End
    Begin WebSearchField edtSearch
       ControlID       =   ""
       CSSClasses      =   ""
@@ -71,7 +41,7 @@ Begin WebPage MainPage
       Hint            =   "Search"
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   140
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -85,9 +55,9 @@ Begin WebPage MainPage
       TabStop         =   True
       Text            =   ""
       Tooltip         =   ""
-      Top             =   20
+      Top             =   76
       Visible         =   True
-      Width           =   440
+      Width           =   560
       _mPanelIndex    =   -1
    End
    Begin WebListBox FileList
@@ -102,11 +72,11 @@ Begin WebPage MainPage
       HasBorder       =   True
       HasHeader       =   True
       HeaderHeight    =   0
-      Height          =   334
+      Height          =   276
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
-      InitialValue    =   ""
+      InitialValue    =   "Type	File	Date"
       LastAddedRowIndex=   0
       LastColumnIndex =   0
       LastRowIndex    =   0
@@ -130,7 +100,7 @@ Begin WebPage MainPage
       TabIndex        =   2
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   80
+      Top             =   138
       Visible         =   True
       Width           =   560
       _mPanelIndex    =   -1
@@ -164,6 +134,34 @@ Begin WebPage MainPage
       Width           =   800
       _mDesignHeight  =   0
       _mDesignWidth   =   0
+      _mPanelIndex    =   -1
+   End
+   Begin WebToolbar1 WebToolbar11
+      ControlID       =   ""
+      CSSClasses      =   ""
+      Enabled         =   True
+      FullWidth       =   False
+      Height          =   56
+      Index           =   -2147483648
+      Indicator       =   ""
+      Left            =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      LockVertical    =   False
+      PanelIndex      =   0
+      Position        =   ""
+      Scope           =   0
+      TabIndex        =   4
+      TabStop         =   True
+      Title           =   ""
+      Tooltip         =   ""
+      Top             =   0
+      Visible         =   True
+      Width           =   600
       _mPanelIndex    =   -1
    End
 End
@@ -208,13 +206,6 @@ End
 
 #tag EndWindowCode
 
-#tag Events btnUpload
-	#tag Event
-		Sub Pressed()
-		  UploadPage.Show
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events edtSearch
 	#tag Event
 		Sub Pressed()

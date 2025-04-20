@@ -68,16 +68,24 @@ Protected Module DocumentParser
 		  Var f As FolderItem
 		  f = New FolderItem(App.inputFolder.Child(pdfFilename)) 
 		  
-		  
 		  Var parsedPDF As String = GetText(f)
+		  If parsedPDF = "Error" Then Exit
 		  
-		  If parsedPDF = "Error" Then 
-		    Exit
+		  
+		  If Len(parsedPDF) <= 25 Then
+		    // PDF contains less than 25 characters. 
+		    // It is probably an image-based PDF without markable text. 
+		    // Text recognition (OCR) must be performed.
+		    
+		    'ToDo
 		  End If
-		  
 		  
 		  If Len(parsedPDF) > 25 Then
 		    // Document has more than 25 characters, then it will be processed
+		    
+		    // Caching Filedata Variables
+		    Var CreationDate As String = f.CreationDateTime.SQLDateTime
+		    Var ModificationDate As String = f.ModificationDateTime.SQLDateTime
 		    
 		    // Make a Thumbnail Image
 		    Var g As FolderItem = App.thumbnailFolder.Child(pdfFileName)
@@ -91,31 +99,24 @@ Protected Module DocumentParser
 		    Var h As FolderItem = App.documentFolder.Child(pdfFileName)
 		    If h <> Nil Then
 		      f.MoveTo(h) 'If the Filename is already exists it cannot be moved
-		      
-		      // Save in Database
-		      Var row As New DatabaseRow
-		      
-		      row.Column("filename").StringValue = f.Name
-		      row.Column("content").StringValue = parsedPDF
-		      row.Column("created").StringValue = f.CreationDateTime.SQLDateTime
-		      row.Column("modified").StringValue = f.ModificationDateTime.SQLDateTime
-		      row.Column("added").StringValue = DateTime.Now.SQLDateTime
-		      
-		      Try
-		        Session.imcDB.AddRow("documents", row)
-		        System.DebugLog("Importin DB " + pdfFileName)
-		      Catch e As DatabaseException
-		        MessageBox("Error: " + e.Message)
-		        System.DebugLog(e.Message)
-		      End Try
-		      
-		      
 		    End If
 		    
-		  Else
-		    // Document has less than 25 characters, then run OCR
+		    // Save into DB
+		    Var row As New DatabaseRow
 		    
-		    'ToDo
+		    row.Column("filename").StringValue = f.Name
+		    row.Column("content").StringValue = parsedPDF
+		    row.Column("created").StringValue = CreationDate
+		    row.Column("modified").StringValue = ModificationDate
+		    row.Column("added").StringValue = DateTime.Now.SQLDateTime
+		    
+		    Try
+		      Session.imcDB.AddRow("documents", row)
+		      System.DebugLog("Import in DB " + pdfFileName)
+		    Catch e As DatabaseException
+		      MessageBox("DB Error: " + e.Message)
+		      System.DebugLog(e.Message)
+		    End Try
 		    
 		  End If
 		  

@@ -25,6 +25,7 @@ Begin WebDialog ViewerDialog
    Width           =   900
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebHTMLViewer HTMLViewer1
       ControlID       =   ""

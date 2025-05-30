@@ -34,11 +34,11 @@ Begin WebPage UploadPage
    _mDesignWidth   =   0
    _mPanelIndex    =   -1
    Begin WebFileUploader FileUploader1
-      Caption         =   "Choose a PDF file"
+      Caption         =   "#Strings.ChoosePDF"
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
-      Filter          =   ""
+      Filter          =   "application/pdf"
       HasFileNameField=   True
       Height          =   38
       Hint            =   ""
@@ -68,7 +68,7 @@ Begin WebPage UploadPage
    Begin WebButton btnUpload
       AllowAutoDisable=   False
       Cancel          =   False
-      Caption         =   "Upload"
+      Caption         =   "#Strings.Upload"
       ControlID       =   ""
       CSSClasses      =   ""
       Default         =   False
@@ -143,7 +143,7 @@ Begin WebPage UploadPage
    Begin WebButton btnImportAll
       AllowAutoDisable=   False
       Cancel          =   False
-      Caption         =   "Import All"
+      Caption         =   "#Strings.Import"
       ControlID       =   ""
       CSSClasses      =   ""
       Default         =   False

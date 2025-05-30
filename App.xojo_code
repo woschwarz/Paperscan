@@ -3,34 +3,55 @@ Protected Class App
 Inherits WebApplication
 	#tag Event
 		Sub Opening(args() As String)
-		  // Set and create Folders
-		  Var paperscanFolder As FolderItem = SpecialFolder.Documents.Child("Paperscan")
-		  If Not paperscanFolder.Exists Then paperscanFolder.CreateFolder
+		  // Set and create Folders if they do not exist
+		  Var f As FolderItem = SpecialFolder.UserHome
 		  
-		  //Child
-		  databaseFolder = SpecialFolder.Documents.Child("Paperscan").Child("Data")
-		  inputFolder = SpecialFolder.Documents.Child("Paperscan").Child("Input")
-		  mediaFolder = SpecialFolder.Documents.Child("Paperscan").Child("Media")
+		  System.DebugLog("UserHome = " + f.NativePath)
+		  System.DebugLog("Parent = " +f.Name)
+		  
+		  // Check the current UserHome folder name. If this is called Paperscan then it does not need to be created.
+		  If f <> Nil And f.Parent <> Nil Then
+		    
+		    // If this is called Paperscan then it does not need to be created (for Docker Containers)
+		    If f.Name <> "Paperscan" Then
+		      
+		      Var papserscanFolder As FolderItem = f.Child("Paperscan")
+		      If Not papserscanFolder.Exists Then papserscanFolder.CreateFolder
+		      
+		      f = SpecialFolder.UserHome.Child("Paperscan")
+		      System.DebugLog("UserHome = " + f.NativePath)
+		      
+		    End If
+		    
+		  End If
+		  
+		  //Childs
+		  databaseFolder = f.Child("Data")
+		  inputFolder = f.Child("Input")
+		  mediaFolder = f.Child("Media")
 		  
 		  If Not databaseFolder.Exists Then databaseFolder.CreateFolder
 		  If Not inputFolder.Exists Then inputFolder.CreateFolder
 		  If Not mediaFolder.Exists Then mediaFolder.CreateFolder
+		  System.DebugLog("Child Folders created")
 		  
 		  //Child Media
-		  documentFolder = SpecialFolder.Documents.Child("Paperscan").Child("Media").Child("Documents")
-		  thumbnailFolder = SpecialFolder.Documents.Child("Paperscan").Child("Media").Child("Thumbnails")
+		  documentFolder = mediaFolder.Child("Documents")
+		  thumbnailFolder = mediaFolder.Child("Thumbnails")
 		  
 		  If Not thumbnailFolder.Exists Then thumbnailFolder.CreateFolder
 		  If Not documentFolder.Exists Then documentFolder.CreateFolder
+		  System.DebugLog("Media Child Folders created")
 		End Sub
 	#tag EndEvent
 
 
 	#tag Note, Name = ReadMe
-		PaperScan by Wolfgang Schwarz, Donauwoerth, Germany (https://github.com/woschwarz/paperscan)
+		PaperScan - Developed by Wolfgang Schwarz, Germany
+		
 		A lightweight PDF Management with SQLite Database
 		
-		Programmed with Xojo (https://www.xojo.com)
+		Written in Xojo (https://www.xojo.com)
 		
 		Additional programs are required for the shell commands:
 		- ghostscript
@@ -46,6 +67,9 @@ Inherits WebApplication
 		Under Linux use apt-get or similar 
 		# apt-get install ghostscript
 		# apt-get install poppler-utils
+		
+		For more information, visit: https://github.com/woschwarz
+		
 	#tag EndNote
 
 	#tag Note, Name = ToDo

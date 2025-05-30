@@ -25,7 +25,6 @@ Begin WebDialog ViewerDialog
    Width           =   900
    _mDesignHeight  =   0
    _mDesignWidth   =   0
-   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebHTMLViewer HTMLViewer1
       ControlID       =   ""
@@ -77,7 +76,7 @@ Begin WebDialog ViewerDialog
       Scope           =   0
       TabIndex        =   1
       TabStop         =   True
-      Text            =   "Filename"
+      Text            =   "#Strings.Filename"
       TextAlignment   =   0
       TextColor       =   &c000000FF
       Tooltip         =   ""
@@ -111,7 +110,7 @@ Begin WebDialog ViewerDialog
       Scope           =   0
       TabIndex        =   2
       TabStop         =   True
-      Text            =   "Added"
+      Text            =   "#Strings.Added"
       TextAlignment   =   0
       TextColor       =   &c000000FF
       Tooltip         =   ""
@@ -145,7 +144,7 @@ Begin WebDialog ViewerDialog
       Scope           =   0
       TabIndex        =   3
       TabStop         =   True
-      Text            =   "Created"
+      Text            =   "#Strings.Created"
       TextAlignment   =   0
       TextColor       =   &c000000FF
       Tooltip         =   ""
@@ -179,7 +178,7 @@ Begin WebDialog ViewerDialog
       Scope           =   0
       TabIndex        =   4
       TabStop         =   True
-      Text            =   "Modified"
+      Text            =   "#Strings.Modified"
       TextAlignment   =   0
       TextColor       =   &c000000FF
       Tooltip         =   ""
@@ -213,7 +212,7 @@ Begin WebDialog ViewerDialog
       Scope           =   0
       TabIndex        =   5
       TabStop         =   True
-      Text            =   "Content"
+      Text            =   "#Strings.Content"
       TextAlignment   =   0
       TextColor       =   &c000000FF
       Tooltip         =   ""
@@ -395,7 +394,7 @@ Begin WebDialog ViewerDialog
    Begin WebButton btnClose
       AllowAutoDisable=   False
       Cancel          =   False
-      Caption         =   "Close"
+      Caption         =   "#Strings.Close"
       ControlID       =   ""
       CSSClasses      =   ""
       Default         =   True
@@ -425,7 +424,7 @@ Begin WebDialog ViewerDialog
    Begin WebButton Button1
       AllowAutoDisable=   False
       Cancel          =   False
-      Caption         =   "Print"
+      Caption         =   "#Strings.Print"
       ControlID       =   ""
       CSSClasses      =   ""
       Default         =   False
@@ -455,7 +454,7 @@ Begin WebDialog ViewerDialog
    Begin WebButton Button2
       AllowAutoDisable=   False
       Cancel          =   False
-      Caption         =   "Download"
+      Caption         =   "#Strings.Download"
       ControlID       =   ""
       CSSClasses      =   ""
       Default         =   False

@@ -38,7 +38,7 @@ Begin WebPage MainPage
       CSSClasses      =   ""
       Enabled         =   True
       Height          =   38
-      Hint            =   "Search"
+      Hint            =   "#Strings.Search"
       Index           =   -2147483648
       Indicator       =   ""
       Left            =   20

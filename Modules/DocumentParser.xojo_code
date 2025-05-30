@@ -68,7 +68,7 @@ Protected Module DocumentParser
 		  Var f As FolderItem
 		  f = New FolderItem(App.inputFolder.Child(pdfFilename)) 
 		  
-		  Var parsedPDF As String = GetText(f)
+		  Var parsedPDF As String = GetText(f).Trim
 		  If parsedPDF = "Error" Then Exit
 		  
 		  
@@ -95,10 +95,19 @@ Protected Module DocumentParser
 		      System.DebugLog("Thumbnail error")
 		    End If
 		    
-		    // Move PDF File to Media/Document Folder and save in Database
+		    // Move PDF File to Media/Document Folder and save into Database
 		    Var h As FolderItem = App.documentFolder.Child(pdfFileName)
+		    
+		    // If the Filename is already exists, it cannot be moved
 		    If h <> Nil Then
-		      f.MoveTo(h) 'If the Filename is already exists it cannot be moved
+		      
+		      Try
+		        f.MoveTo(h) 
+		      Catch e As IOException
+		        System.DebugLog("An IO exception occurred with MoveTo " + e.Message + " (Error: " + e.ErrorNumber.toString + ")")
+		        Exit
+		      End Try
+		      
 		    End If
 		    
 		    // Save into DB
@@ -124,10 +133,6 @@ Protected Module DocumentParser
 		    // Parsing finished
 		  End If
 		  
-		  Exception err As IOException
-		    System.DebugLog("an IO exception occurred (UploadFileContainer/ProcessPDF/Moveto)")
-		    
-		    
 		End Sub
 	#tag EndMethod
 

@@ -66,7 +66,7 @@ Inherits SQLiteDatabase
 		  Var sql As String = "SELECT * FROM documents WHERE id = ?"
 		  Var rs As RowSet = Self.SelectSQL(sql, id)
 		  
-		  System.DebugLog(sql)
+		  #If DebugBuild Then System.DebugLog(sql)
 		  
 		  Return rs
 		End Function
@@ -77,10 +77,9 @@ Inherits SQLiteDatabase
 		  Var sql As String = "SELECT * FROM documents WHERE filename LIKE ? OR content LIKE ? ORDER BY filename"
 		  Var rs As RowSet = Self.SelectSQL(sql, "%" + searchName + "%", "%" + searchName + "%")
 		  
-		  System.DebugLog(sql)
+		  #If DebugBuild Then System.DebugLog(sql)
 		  
 		  Return rs
-		  
 		  
 		End Function
 	#tag EndMethod

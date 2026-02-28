@@ -74,8 +74,16 @@ Inherits SQLiteDatabase
 
 	#tag Method, Flags = &h0
 		Function FindFileByName(Optional searchName AS String) As RowSet
-		  Var sql As String = "SELECT * FROM documents WHERE filename LIKE ? OR content LIKE ? ORDER BY filename"
-		  Var rs As RowSet = Self.SelectSQL(sql, "%" + searchName + "%", "%" + searchName + "%")
+		  Var sql As String 
+		  var rs As RowSet
+		  
+		  If searchName <> "" Then
+		    sql  = "SELECT id, filename, content, created FROM documents WHERE filename LIKE ? OR content LIKE ? ORDER BY filename"
+		    rs  = Self.SelectSQL(sql, "%" + searchName + "%", "%" + searchName + "%")
+		  Else
+		    sql = "SELECT id, filename, created FROM documents"
+		    rs = Self.SelectSQL(sql)
+		  End If
 		  
 		  #If DebugBuild Then System.DebugLog(sql)
 		  

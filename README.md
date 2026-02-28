@@ -7,7 +7,7 @@ Additional programs are required for the shell commands:
 - ghostscript
 - pdftotext
 
-On macOs open Terminal and install Homebrew (https://brew.sh/de/):  
+On macOS open Terminal and install Homebrew (https://brew.sh/de/):  
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 Install ghostscript and pdftotext:  

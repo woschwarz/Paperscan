@@ -32,6 +32,7 @@ Begin WebPage UploadPage
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebFileUploader FileUploader1
       Caption         =   "#Strings.ChoosePDF"
@@ -62,7 +63,7 @@ Begin WebPage UploadPage
       Top             =   76
       UploadTimeout   =   0
       Visible         =   True
-      Width           =   444
+      Width           =   421
       _mPanelIndex    =   -1
    End
    Begin WebButton btnUpload
@@ -76,7 +77,7 @@ Begin WebPage UploadPage
       Height          =   38
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   480
+      Left            =   460
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -92,7 +93,7 @@ Begin WebPage UploadPage
       Tooltip         =   ""
       Top             =   76
       Visible         =   True
-      Width           =   100
+      Width           =   120
       _mPanelIndex    =   -1
    End
    Begin WebListBox UploadList
@@ -204,7 +205,7 @@ Begin WebPage UploadPage
       Width           =   421
       _mPanelIndex    =   -1
    End
-   Begin WebToolbar1 WebToolbar11
+   Begin MainWebToolbar MainToolbar
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
@@ -239,7 +240,7 @@ End
 	#tag Event
 		Sub Shown()
 		  lblStatus.Text = ""
-		  LoadFileList
+		  Update
 		End Sub
 	#tag EndEvent
 
@@ -273,6 +274,12 @@ End
 		    
 		  Next
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Update()
+		  LoadFileList
 		End Sub
 	#tag EndMethod
 

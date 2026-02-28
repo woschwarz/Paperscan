@@ -1,16 +1,28 @@
 #tag Class
-Protected Class WebToolbar1
+Protected Class MainWebToolbar
 Inherits WebToolbar
 	#tag Event
 		Sub Opening()
+		  Var iconColor As Color = Color.White
+		  
 		  Self.Title = "PaperScan"
-		  Self.Icon = WebPicture.BootstrapIcon("stack-overflow")
+		  Self.Icon = WebPicture.BootstrapIcon("stack-overflow", iconColor)
 		  
 		  // Archive Button
 		  Var btn As New WebToolbarButton
 		  btn.Style = WebToolbarButton.ButtonStyles.PushButton 
 		  btn.Caption = "Archive"
+		  btn.Tag = "archive"
 		  'btn.Icon = WebPicture.BootstrapIcon("file-pdf")
+		  Self.AddItem(btn)
+		  
+		  // Upload Button
+		  btn = New WebToolbarButton
+		  btn.Style = WebToolbarButton.ButtonStyles.PushButton
+		  btn.Caption = "Upload"
+		  btn.Tag = "upload"
+		  'btn.Icon = WebPicture.BootstrapIcon("upload", iconColor)
+		  'btn.Badge = Str(MainModules.CountFiles(App.inputFolder))
 		  Self.AddItem(btn)
 		  
 		  // Flexible Space
@@ -18,12 +30,12 @@ Inherits WebToolbar
 		  btn.Style = WebToolbarButton.ButtonStyles.FlexibleSpace
 		  Self.AddItem(btn)
 		  
-		  // Upload Button
+		  // About Button
 		  btn = New WebToolbarButton
-		  btn.Style = WebToolbarButton.ButtonStyles.PushButton
-		  btn.Caption = "Upload"
-		  btn.Icon = WebPicture.BootstrapIcon("upload")
-		  'btn.Badge = Str(MainModules.CountFiles(App.inputFolder))
+		  btn.Style = WebToolbarButton.ButtonStyles.PushButton 
+		  btn.Caption = Strings.About
+		  btn.Tag = "about"
+		  'btn.Icon = WebPicture.BootstrapIcon("file-pdf")
 		  Self.AddItem(btn)
 		  
 		End Sub
@@ -31,8 +43,23 @@ Inherits WebToolbar
 
 	#tag Event
 		Sub Pressed(item As WebToolbarButton)
-		  If item.Caption = "Archive" Then MainPage.Show
-		  If item.Caption = "Upload" Then UploadPage.Show
+		  Select Case item.Tag
+		  Case "archive"
+		    Session.CurrentPage.Close
+		    MainPage.Show
+		    'MainPage.Update
+		    
+		  Case "about"
+		    Var dlg As New AboutDialog
+		    dlg.Show
+		    
+		  Case "upload"
+		    Session.CurrentPage.Close
+		    UploadPage.Show
+		    UploadPage.Update
+		    
+		  End Select
+		  
 		End Sub
 	#tag EndEvent
 

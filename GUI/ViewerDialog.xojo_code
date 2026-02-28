@@ -5,7 +5,7 @@ Begin WebDialog ViewerDialog
    ControlID       =   ""
    CSSClasses      =   ""
    Enabled         =   True
-   Height          =   770
+   Height          =   870
    Index           =   -2147483648
    Indicator       =   0
    LayoutDirection =   0
@@ -22,7 +22,7 @@ Begin WebDialog ViewerDialog
    TabIndex        =   0
    Top             =   0
    Visible         =   True
-   Width           =   900
+   Width           =   1000
    _mDesignHeight  =   0
    _mDesignWidth   =   0
    _mPanelIndex    =   -1
@@ -30,7 +30,7 @@ Begin WebDialog ViewerDialog
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
-      Height          =   730
+      Height          =   830
       Index           =   -2147483648
       Indicator       =   ""
       Left            =   20
@@ -49,143 +49,7 @@ Begin WebDialog ViewerDialog
       Top             =   20
       UseSandbox      =   False
       Visible         =   True
-      Width           =   520
-      _mPanelIndex    =   -1
-   End
-   Begin WebLabel lblFilename
-      Bold            =   False
-      ControlID       =   ""
-      CSSClasses      =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   38
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   573
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      PanelIndex      =   0
-      Scope           =   0
-      TabIndex        =   1
-      TabStop         =   True
-      Text            =   "#Strings.Filename"
-      TextAlignment   =   0
-      TextColor       =   &c000000FF
-      Tooltip         =   ""
-      Top             =   30
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
-      _mPanelIndex    =   -1
-   End
-   Begin WebLabel lblAdded
-      Bold            =   False
-      ControlID       =   ""
-      CSSClasses      =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   38
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   573
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      PanelIndex      =   0
-      Scope           =   0
-      TabIndex        =   2
-      TabStop         =   True
-      Text            =   "#Strings.Added"
-      TextAlignment   =   0
-      TextColor       =   &c000000FF
-      Tooltip         =   ""
-      Top             =   104
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
-      _mPanelIndex    =   -1
-   End
-   Begin WebLabel lblCreated
-      Bold            =   False
-      ControlID       =   ""
-      CSSClasses      =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   38
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   573
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      PanelIndex      =   0
-      Scope           =   0
-      TabIndex        =   3
-      TabStop         =   True
-      Text            =   "#Strings.Created"
-      TextAlignment   =   0
-      TextColor       =   &c000000FF
-      Tooltip         =   ""
-      Top             =   177
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
-      _mPanelIndex    =   -1
-   End
-   Begin WebLabel lblModified
-      Bold            =   False
-      ControlID       =   ""
-      CSSClasses      =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   38
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   573
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      PanelIndex      =   0
-      Scope           =   0
-      TabIndex        =   4
-      TabStop         =   True
-      Text            =   "#Strings.Modified"
-      TextAlignment   =   0
-      TextColor       =   &c000000FF
-      Tooltip         =   ""
-      Top             =   248
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
+      Width           =   600
       _mPanelIndex    =   -1
    End
    Begin WebLabel lblContent
@@ -199,7 +63,7 @@ Begin WebDialog ViewerDialog
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
-      Left            =   573
+      Left            =   643
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -216,7 +80,7 @@ Begin WebDialog ViewerDialog
       TextAlignment   =   0
       TextColor       =   &c000000FF
       Tooltip         =   ""
-      Top             =   318
+      Top             =   317
       Underline       =   False
       Visible         =   True
       Width           =   100
@@ -225,16 +89,16 @@ Begin WebDialog ViewerDialog
    Begin WebTextField edtFilename
       AllowAutoComplete=   False
       AllowSpellChecking=   False
-      Caption         =   ""
+      Caption         =   "#Strings.Filename"
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   0
-      Height          =   38
+      Height          =   62
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   573
+      Left            =   643
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -251,24 +115,24 @@ Begin WebDialog ViewerDialog
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
-      Top             =   63
+      Top             =   39
       Visible         =   True
-      Width           =   307
+      Width           =   337
       _mPanelIndex    =   -1
    End
    Begin WebTextField edtAdded
       AllowAutoComplete=   False
       AllowSpellChecking=   False
-      Caption         =   ""
+      Caption         =   "#Strings.Added"
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   0
-      Height          =   38
+      Height          =   62
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   573
+      Left            =   643
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -285,24 +149,24 @@ Begin WebDialog ViewerDialog
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
-      Top             =   134
+      Top             =   110
       Visible         =   True
-      Width           =   307
+      Width           =   337
       _mPanelIndex    =   -1
    End
    Begin WebTextField edtCreated
       AllowAutoComplete=   False
       AllowSpellChecking=   False
-      Caption         =   ""
+      Caption         =   "#Strings.Created"
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   0
-      Height          =   38
+      Height          =   62
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   573
+      Left            =   643
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -319,24 +183,24 @@ Begin WebDialog ViewerDialog
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
-      Top             =   208
+      Top             =   184
       Visible         =   True
-      Width           =   307
+      Width           =   337
       _mPanelIndex    =   -1
    End
    Begin WebTextField edtModified
       AllowAutoComplete=   False
       AllowSpellChecking=   False
-      Caption         =   ""
+      Caption         =   "#Strings.Modified"
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   0
-      Height          =   38
+      Height          =   62
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   573
+      Left            =   643
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -353,9 +217,9 @@ Begin WebDialog ViewerDialog
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
-      Top             =   280
+      Top             =   256
       Visible         =   True
-      Width           =   307
+      Width           =   337
       _mPanelIndex    =   -1
    End
    Begin WebTextArea edtContent
@@ -365,11 +229,11 @@ Begin WebDialog ViewerDialog
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
-      Height          =   345
+      Height          =   445
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   573
+      Left            =   643
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -388,7 +252,7 @@ Begin WebDialog ViewerDialog
       Tooltip         =   ""
       Top             =   351
       Visible         =   True
-      Width           =   307
+      Width           =   337
       _mPanelIndex    =   -1
    End
    Begin WebButton btnClose
@@ -402,7 +266,7 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Index           =   -2147483648
       Indicator       =   1
-      Left            =   789
+      Left            =   875
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -416,12 +280,12 @@ Begin WebDialog ViewerDialog
       TabIndex        =   12
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   712
+      Top             =   812
       Visible         =   True
-      Width           =   91
+      Width           =   105
       _mPanelIndex    =   -1
    End
-   Begin WebButton Button1
+   Begin WebButton btnPrint
       AllowAutoDisable=   False
       Cancel          =   False
       Caption         =   "#Strings.Print"
@@ -432,7 +296,7 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   689
+      Left            =   761
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -446,12 +310,12 @@ Begin WebDialog ViewerDialog
       TabIndex        =   13
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   712
+      Top             =   812
       Visible         =   True
-      Width           =   78
+      Width           =   90
       _mPanelIndex    =   -1
    End
-   Begin WebButton Button2
+   Begin WebButton btnDownload
       AllowAutoDisable=   False
       Cancel          =   False
       Caption         =   "#Strings.Download"
@@ -462,7 +326,7 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   573
+      Left            =   643
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -476,7 +340,7 @@ Begin WebDialog ViewerDialog
       TabIndex        =   14
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   712
+      Top             =   812
       Visible         =   True
       Width           =   100
       _mPanelIndex    =   -1
@@ -550,14 +414,14 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Button1
+#tag Events btnPrint
 	#tag Event
 		Sub Pressed()
 		  HTMLViewer1.Print
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Button2
+#tag Events btnDownload
 	#tag Event
 		Sub Pressed()
 		  Session.PDFFile = Nil

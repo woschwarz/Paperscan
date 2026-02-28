@@ -32,6 +32,7 @@ Begin WebPage MainPage
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebSearchField edtSearch
       ControlID       =   ""
@@ -63,7 +64,7 @@ Begin WebPage MainPage
    Begin WebListBox FileList
       AllowRowReordering=   False
       ColumnCount     =   3
-      ColumnWidths    =   ""
+      ColumnWidths    =   "90,*,230"
       ControlID       =   ""
       CSSClasses      =   ""
       DefaultRowHeight=   49
@@ -136,7 +137,7 @@ Begin WebPage MainPage
       _mDesignWidth   =   0
       _mPanelIndex    =   -1
    End
-   Begin WebToolbar1 WebToolbar11
+   Begin MainWebToolbar MainToolbar
       ControlID       =   ""
       CSSClasses      =   ""
       Enabled         =   True
@@ -170,7 +171,7 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Shown()
-		  LoadList
+		  Update
 		End Sub
 	#tag EndEvent
 
@@ -178,7 +179,12 @@ End
 	#tag Method, Flags = &h21
 		Private Sub LoadList()
 		  Var rs As RowSet
-		  rs = Session.imcDB.FindFileByName(edtSearch.Text)
+		  rs = Session.imcDB.FindFileByName(edtSearch.Text.Trim)
+		  
+		  'Var icon As String = "<raw><img src='" + WebPicture.BootstrapIcon("file-earmark-pdf", Color.Red).URL + "'></raw>"
+		  
+		  Var pic As New WebListBoxImageRenderer
+		  pic.URL = "https://cdn.iconscout.com/icon/free/png-32/file-pdf-acrobat-document-adobe-pdf-icon-reader-44504.png"
 		  
 		  System.DebugLog("Perform Search")
 		  
@@ -189,17 +195,23 @@ End
 		    
 		    For Each row As DatabaseRow In rs
 		      
+		      #If DebugBuild Then System.DebugLog rs.Column("filename").StringValue
+		      
+		      'FileList.AddRow(icon, rs.Column("filename").StringValue, rs.Column("created").StringValue)
 		      FileList.AddRow("pic", rs.Column("filename").StringValue, rs.Column("created").StringValue)
 		      FileList.CellTagAt(FileList.LastAddedRowIndex, 0) = rs.Column("id").StringValue
-		      
-		      Var pic As New WebListBoxImageRenderer
-		      pic.URL = "https://cdn.iconscout.com/icon/free/png-32/file-pdf-acrobat-document-adobe-pdf-icon-reader-44504.png"
 		      FileList.CellValueAt(FileList.LastAddedRowIndex, 0) = pic
 		      
 		    Next
 		    
 		    rs.Close
 		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Update()
+		  LoadList
 		End Sub
 	#tag EndMethod
 

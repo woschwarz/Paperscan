@@ -6,7 +6,7 @@ Begin WebPage MainPage
    ControlID       =   ""
    CSSClasses      =   ""
    Enabled         =   False
-   Height          =   434
+   Height          =   800
    ImplicitInstance=   True
    Index           =   -2147483648
    Indicator       =   0
@@ -28,84 +28,11 @@ Begin WebPage MainPage
    Title           =   "Main"
    Top             =   0
    Visible         =   True
-   Width           =   600
+   Width           =   1200
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
-   _mName          =   ""
    _mPanelIndex    =   -1
-   Begin WebSearchField edtSearch
-      ControlID       =   ""
-      CSSClasses      =   ""
-      Enabled         =   True
-      Height          =   38
-      Hint            =   "#Strings.Search"
-      Index           =   -2147483648
-      Indicator       =   ""
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      PanelIndex      =   0
-      Scope           =   2
-      TabIndex        =   1
-      TabStop         =   True
-      Text            =   ""
-      Tooltip         =   ""
-      Top             =   76
-      Visible         =   True
-      Width           =   560
-      _mPanelIndex    =   -1
-   End
-   Begin WebListBox FileList
-      AllowRowReordering=   False
-      ColumnCount     =   3
-      ColumnWidths    =   "90,*,230"
-      ControlID       =   ""
-      CSSClasses      =   ""
-      DefaultRowHeight=   49
-      Enabled         =   True
-      GridLineStyle   =   3
-      HasBorder       =   True
-      HasHeader       =   True
-      HeaderHeight    =   0
-      Height          =   276
-      HighlightSortedColumn=   True
-      Index           =   -2147483648
-      Indicator       =   ""
-      InitialValue    =   "Type	File	Date"
-      LastAddedRowIndex=   0
-      LastColumnIndex =   0
-      LastRowIndex    =   0
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      NoRowsMessage   =   ""
-      PanelIndex      =   0
-      ProcessingMessage=   ""
-      RowCount        =   0
-      RowSelectionType=   1
-      Scope           =   2
-      SearchCriteria  =   ""
-      SelectedRowColor=   &c0d6efd
-      SelectedRowIndex=   0
-      TabIndex        =   2
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   138
-      Visible         =   True
-      Width           =   560
-      _mPanelIndex    =   -1
-   End
    Begin ViewerDialog PDFViewer
       ControlCount    =   0
       ControlID       =   ""
@@ -116,7 +43,7 @@ Begin WebPage MainPage
       Indicator       =   0
       LayoutDirection =   0
       LayoutType      =   0
-      Left            =   0
+      Left            =   300
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -130,7 +57,7 @@ Begin WebPage MainPage
       TabIndex        =   3
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   17
+      Top             =   200
       Visible         =   True
       Width           =   800
       _mDesignHeight  =   0
@@ -144,7 +71,7 @@ Begin WebPage MainPage
       FullWidth       =   False
       Height          =   56
       Index           =   -2147483648
-      Indicator       =   ""
+      Indicator       =   1
       Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -162,8 +89,117 @@ Begin WebPage MainPage
       Tooltip         =   ""
       Top             =   0
       Visible         =   True
-      Width           =   600
+      Width           =   1200
       _mPanelIndex    =   -1
+   End
+   Begin WebRectangle rctFormContent
+      BorderColor     =   &c000000FF
+      BorderThickness =   0
+      ControlCount    =   0
+      ControlID       =   ""
+      CornerSize      =   -1
+      CSSClasses      =   ""
+      Enabled         =   True
+      FillColor       =   &cFFFFFF
+      HasFillColor    =   False
+      Height          =   743
+      Index           =   -2147483648
+      indicator       =   0
+      LayoutDirection =   "LayoutDirections.LeftToRight"
+      LayoutType      =   "LayoutTypes.Fixed"
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      LockVertical    =   False
+      PanelIndex      =   0
+      Scope           =   0
+      TabIndex        =   5
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   57
+      Visible         =   True
+      Width           =   1200
+      _mDesignHeight  =   0
+      _mDesignWidth   =   0
+      _mPanelIndex    =   -1
+      Begin WebListBox FileList
+         AllowRowReordering=   False
+         ColumnCount     =   3
+         ColumnWidths    =   "90,*,230"
+         ControlID       =   ""
+         CSSClasses      =   ""
+         DefaultRowHeight=   49
+         Enabled         =   True
+         GridLineStyle   =   2
+         HasBorder       =   False
+         HasHeader       =   True
+         HeaderHeight    =   0
+         Height          =   642
+         HighlightSortedColumn=   True
+         Index           =   -2147483648
+         Indicator       =   0
+         InitialValue    =   "Type	File	Date"
+         LastAddedRowIndex=   0
+         LastColumnIndex =   0
+         LastRowIndex    =   0
+         Left            =   20
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         NoRowsMessage   =   "This list is empty."
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         ProcessingMessage=   ""
+         RowCount        =   0
+         RowSelectionType=   1
+         Scope           =   2
+         SearchCriteria  =   ""
+         SelectedRowColor=   &c0d6efd
+         SelectedRowIndex=   0
+         TabIndex        =   7
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   138
+         Visible         =   True
+         Width           =   1160
+         _mPanelIndex    =   -1
+      End
+      Begin WebSearchField edtSearch
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         Height          =   38
+         Hint            =   "#Strings.Search"
+         Index           =   -2147483648
+         Indicator       =   ""
+         Left            =   20
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         Scope           =   2
+         TabIndex        =   8
+         TabStop         =   True
+         Text            =   ""
+         Tooltip         =   ""
+         Top             =   76
+         Visible         =   True
+         Width           =   1160
+         _mPanelIndex    =   -1
+      End
    End
 End
 #tag EndWebPage
@@ -181,10 +217,10 @@ End
 		  Var rs As RowSet
 		  rs = Session.imcDB.FindFileByName(edtSearch.Text.Trim)
 		  
-		  'Var icon As String = "<raw><img src='" + WebPicture.BootstrapIcon("file-earmark-pdf", Color.Red).URL + "'></raw>"
+		  Var icon As String = "<raw><div style='text-align:center'>" + App.kSVGpdf + "</div></raw>"
 		  
-		  Var pic As New WebListBoxImageRenderer
-		  pic.URL = "https://cdn.iconscout.com/icon/free/png-32/file-pdf-acrobat-document-adobe-pdf-icon-reader-44504.png"
+		  'Var pic As New WebListBoxImageRenderer
+		  'pic.URL = "https://cdn.iconscout.com/icon/free/png-32/file-pdf-acrobat-document-adobe-pdf-icon-reader-44504.png"
 		  
 		  System.DebugLog("Perform Search")
 		  
@@ -197,10 +233,10 @@ End
 		      
 		      #If DebugBuild Then System.DebugLog rs.Column("filename").StringValue
 		      
-		      'FileList.AddRow(icon, rs.Column("filename").StringValue, rs.Column("created").StringValue)
-		      FileList.AddRow("pic", rs.Column("filename").StringValue, rs.Column("created").StringValue)
+		      FileList.AddRow(icon, rs.Column("filename").StringValue, rs.Column("created").StringValue)
+		      'FileList.AddRow("pic", rs.Column("filename").StringValue, rs.Column("created").StringValue)
 		      FileList.CellTagAt(FileList.LastAddedRowIndex, 0) = rs.Column("id").StringValue
-		      FileList.CellValueAt(FileList.LastAddedRowIndex, 0) = pic
+		      'FileList.CellValueAt(FileList.LastAddedRowIndex, 0) = pic
 		      
 		    Next
 		    
@@ -218,16 +254,13 @@ End
 
 #tag EndWindowCode
 
-#tag Events edtSearch
+#tag Events rctFormContent
 	#tag Event
-		Sub Pressed()
-		  'If Me.Text <> "" Then LoadList
-		  LoadList
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub TextChanged()
-		  
+		Sub Opening()
+		  'Me.LayoutType = LayoutTypes.Flex
+		  Me.Style.Value("gap") = "20px;"
+		  Me.Style.Value("max-width") = "1200px;"
+		  Me.Style.Value("margin") = "auto;"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -240,6 +273,28 @@ End
 		    PDFViewer.ShowPDFbyID(Me.CellTagAt(FileList.SelectedRowIndex, 0))
 		    
 		  End If
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  Me.HeaderHeight = 35
+		  Me.HeaderAt(0) = Strings.Type
+		  Me.HeaderAt(1) = Strings.Filename
+		  Me.HeaderAt(2) = Strings.Date
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events edtSearch
+	#tag Event
+		Sub Pressed()
+		  'If Me.Text <> "" Then LoadList
+		  LoadList
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub TextChanged()
 		  
 		End Sub
 	#tag EndEvent

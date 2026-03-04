@@ -2,6 +2,31 @@
 Protected Class MainWebToolbar
 Inherits WebToolbar
 	#tag Event
+		Sub MenuSelected(item As WebToolbarButton, hitItem As WebMenuItem)
+		  If item.Tag = "User" Then
+		    
+		    Select Case hitItem.Tag
+		      
+		    Case "Settings"
+		      SettingsPage.Show
+		      
+		    Case "light"
+		      Session.ColorMode = WebSession.ColorModes.Light
+		      
+		    Case "dark"
+		      Session.ColorMode = WebSession.ColorModes.Dark
+		      
+		    Case "about"
+		      Var dlg As New AboutDialog
+		      dlg.Show
+		      
+		    End Select
+		    
+		  End If
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Opening()
 		  Var iconColor As Color = Color.White
 		  
@@ -11,7 +36,7 @@ Inherits WebToolbar
 		  // Archive Button
 		  Var btn As New WebToolbarButton
 		  btn.Style = WebToolbarButton.ButtonStyles.PushButton 
-		  btn.Caption = "Archive"
+		  btn.Caption = Strings.Documents
 		  btn.Tag = "archive"
 		  'btn.Icon = WebPicture.BootstrapIcon("file-pdf")
 		  Self.AddItem(btn)
@@ -19,7 +44,7 @@ Inherits WebToolbar
 		  // Upload Button
 		  btn = New WebToolbarButton
 		  btn.Style = WebToolbarButton.ButtonStyles.PushButton
-		  btn.Caption = "Upload"
+		  btn.Caption = Strings.UploadDocuments
 		  btn.Tag = "upload"
 		  'btn.Icon = WebPicture.BootstrapIcon("upload", iconColor)
 		  'btn.Badge = Str(MainModules.CountFiles(App.inputFolder))
@@ -30,14 +55,36 @@ Inherits WebToolbar
 		  btn.Style = WebToolbarButton.ButtonStyles.FlexibleSpace
 		  Self.AddItem(btn)
 		  
-		  // About Button
+		  // Menu Button
 		  btn = New WebToolbarButton
-		  btn.Style = WebToolbarButton.ButtonStyles.PushButton 
-		  btn.Caption = Strings.About
-		  btn.Tag = "about"
-		  'btn.Icon = WebPicture.BootstrapIcon("file-pdf")
-		  Self.AddItem(btn)
+		  btn.Style = WebToolbarButton.ButtonStyles.Menu
+		  btn.Icon = WebPicture.BootstrapIcon("sliders", iconColor)
+		  'btn.Caption = ""
+		  btn.Tag = "user"
 		  
+		  Var m As New WebMenuItem
+		  m.Text = Strings.Settings
+		  m.tag = "settings"
+		  btn.Menu.AddMenuItem(m)
+		  
+		  m = New WebMenuItem
+		  m.Text = "Light Mode"
+		  m.tag = "light"
+		  btn.Menu.AddMenuItem(m)
+		  
+		  m = New WebMenuItem
+		  m.Text = "Dark Mode"
+		  m.tag = "dark"
+		  btn.Menu.AddMenuItem(m)
+		  
+		  btn.Menu.AddSeparator()
+		  
+		  m = New WebMenuItem
+		  m.Text = Strings.About + " " + App.ExecutableFile.Name
+		  m.tag = "about"
+		  btn.Menu.AddMenuItem(m)
+		  
+		  Self.AddItem(btn)
 		End Sub
 	#tag EndEvent
 

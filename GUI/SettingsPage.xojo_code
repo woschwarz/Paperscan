@@ -1,5 +1,5 @@
 #tag WebPage
-Begin WebPage UploadPage
+Begin WebPage SettingsPage
    AllowTabOrderWrap=   True
    Compatibility   =   ""
    ControlCount    =   0
@@ -25,13 +25,14 @@ Begin WebPage UploadPage
    PanelIndex      =   0
    ScaleFactor     =   0.0
    TabIndex        =   0
-   Title           =   "Upload"
+   Title           =   "Settings"
    Top             =   0
    Visible         =   True
    Width           =   1200
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin MainWebToolbar MainToolbar
       ControlID       =   ""
@@ -50,9 +51,9 @@ Begin WebPage UploadPage
       LockTop         =   True
       LockVertical    =   False
       PanelIndex      =   0
-      Position        =   ""
+      Position        =   0
       Scope           =   0
-      TabIndex        =   5
+      TabIndex        =   2
       TabStop         =   True
       Title           =   ""
       Tooltip         =   ""
@@ -73,7 +74,7 @@ Begin WebPage UploadPage
       HasFillColor    =   False
       Height          =   743
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       LayoutDirection =   "LayoutDirections.LeftToRight"
       LayoutType      =   "LayoutTypes.Fixed"
       Left            =   0
@@ -86,7 +87,7 @@ Begin WebPage UploadPage
       LockVertical    =   False
       PanelIndex      =   0
       Scope           =   0
-      TabIndex        =   6
+      TabIndex        =   3
       TabStop         =   True
       Tooltip         =   ""
       Top             =   57
@@ -95,180 +96,40 @@ Begin WebPage UploadPage
       _mDesignHeight  =   0
       _mDesignWidth   =   0
       _mPanelIndex    =   -1
-      Begin WebListBox UploadList
-         AllowRowReordering=   False
-         ColumnCount     =   3
-         ColumnWidths    =   ""
-         ControlID       =   ""
-         CSSClasses      =   ""
-         DefaultRowHeight=   49
-         Enabled         =   True
-         GridLineStyle   =   2
-         HasBorder       =   False
-         HasHeader       =   True
-         HeaderHeight    =   0
-         Height          =   597
-         HighlightSortedColumn=   True
-         Index           =   -2147483648
-         Indicator       =   ""
-         InitialValue    =   "Filename	Date	Size"
-         LastAddedRowIndex=   0
-         LastColumnIndex =   0
-         LastRowIndex    =   0
-         Left            =   20
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockHorizontal  =   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   True
-         LockVertical    =   False
-         NoRowsMessage   =   "This list is empty."
-         PanelIndex      =   0
-         Parent          =   "rctFormContent"
-         ProcessingMessage=   ""
-         RowCount        =   0
-         RowSelectionType=   1
-         Scope           =   2
-         SearchCriteria  =   ""
-         SelectedRowColor=   &c0d6efd
-         SelectedRowIndex=   0
-         TabIndex        =   0
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   135
-         Visible         =   True
-         Width           =   1160
-         _mPanelIndex    =   -1
-      End
-      Begin WebButton btnUpload
-         AllowAutoDisable=   False
-         Cancel          =   False
-         Caption         =   "#Strings.Upload"
-         ControlID       =   ""
-         CSSClasses      =   ""
-         Default         =   False
-         Enabled         =   True
-         Height          =   38
-         Index           =   -2147483648
-         Indicator       =   1
-         Left            =   1060
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockHorizontal  =   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         LockVertical    =   False
-         Outlined        =   False
-         PanelIndex      =   0
-         Parent          =   "rctFormContent"
-         Scope           =   2
-         TabIndex        =   1
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   76
-         Visible         =   True
-         Width           =   120
-         _mPanelIndex    =   -1
-      End
-      Begin WebFileUploader FileUploader1
-         Caption         =   "#Strings.ChoosePDF"
-         ControlID       =   ""
-         CSSClasses      =   ""
-         Enabled         =   True
-         Filter          =   "application/pdf"
-         HasFileNameField=   True
-         Height          =   38
-         Hint            =   ""
-         Index           =   -2147483648
-         Indicator       =   ""
-         Left            =   20
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockHorizontal  =   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   True
-         LockVertical    =   False
-         MaximumBytes    =   0
-         MaximumFileCount=   0
-         PanelIndex      =   0
-         Parent          =   "rctFormContent"
-         Scope           =   2
-         TabIndex        =   2
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   76
-         UploadTimeout   =   0
-         Visible         =   True
-         Width           =   1021
-         _mPanelIndex    =   -1
-      End
-      Begin WebButton btnImportAll
-         AllowAutoDisable=   False
-         Cancel          =   False
-         Caption         =   "#Strings.Import"
-         ControlID       =   ""
-         CSSClasses      =   ""
-         Default         =   False
-         Enabled         =   False
-         Height          =   38
-         Index           =   -2147483648
-         Indicator       =   1
-         Left            =   1060
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockHorizontal  =   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   False
-         LockVertical    =   False
-         Outlined        =   False
-         PanelIndex      =   0
-         Parent          =   "rctFormContent"
-         Scope           =   2
-         TabIndex        =   3
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   742
-         Visible         =   True
-         Width           =   120
-         _mPanelIndex    =   -1
-      End
-      Begin WebLabel lblStatus
+      Begin WebLabel lblCommingNext
          Bold            =   False
          ControlID       =   ""
          CSSClasses      =   ""
          Enabled         =   True
          FontName        =   ""
-         FontSize        =   0.0
+         FontSize        =   24.0
          Height          =   38
          Index           =   -2147483648
          Indicator       =   ""
          Italic          =   False
-         Left            =   20
+         Left            =   500
          LockBottom      =   True
          LockedInPosition=   False
          LockHorizontal  =   False
          LockLeft        =   True
          LockRight       =   True
-         LockTop         =   False
+         LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
          PanelIndex      =   0
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   4
+         TabPanelIndex   =   0
          TabStop         =   True
-         Text            =   ""
-         TextAlignment   =   0
+         Text            =   "coming next ..."
+         TextAlignment   =   2
          TextColor       =   &c000000FF
          Tooltip         =   ""
-         Top             =   742
+         Top             =   410
          Underline       =   False
          Visible         =   True
-         Width           =   1021
+         Width           =   200
          _mPanelIndex    =   -1
       End
    End
@@ -276,58 +137,6 @@ End
 #tag EndWebPage
 
 #tag WindowCode
-	#tag Event
-		Sub Shown()
-		  lblStatus.Text = ""
-		  Update
-		End Sub
-	#tag EndEvent
-
-
-	#tag Method, Flags = &h21
-		Private Sub LoadFileList()
-		  Var size As Integer
-		  
-		  If App.inputFolder Is Nil Then
-		    Return
-		  End If
-		  
-		  // Clear Listbox
-		  UploadList.RemoveAllRows
-		  
-		  
-		  For Each file As Folderitem In App.inputFolder.Children
-		    If file <> Nil And file.Visible And Not file.IsFolder Then
-		      UploadList.AddRow(file.Name)
-		      
-		      Var modDate As String
-		      modDate = file.ModificationDateTime.ToString(Locale.Current, DateTime.FormatStyles.Short, DateTime.FormatStyles.Short)
-		      UploadList.CellValueAt(UploadList.LastAddedRowIndex, 1) = modDate
-		      
-		      size = file.Length
-		      
-		      UploadList.CellValueAt(UploadList.LastAddedRowIndex, 2) = Str(size) + " bytes"
-		      
-		    End If
-		    
-		    
-		  Next
-		  
-		  If UploadList.RowCount <= 0 Then
-		    btnImportAll.Enabled = False
-		  Else
-		    btnImportAll.Enabled = True
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Update()
-		  LoadFileList
-		End Sub
-	#tag EndMethod
-
-
 #tag EndWindowCode
 
 #tag Events rctFormContent
@@ -337,75 +146,6 @@ End
 		  Me.Style.Value("gap") = "20px;"
 		  Me.Style.Value("max-width") = "1200px;"
 		  Me.Style.Value("margin") = "auto;"
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events UploadList
-	#tag Event
-		Sub Opening()
-		  Me.HeaderHeight = 35
-		  Me.HeaderAt(0) = Strings.Filename
-		  Me.HeaderAt(1) = Strings.Date
-		  Me.HeaderAt(2) = Strings.Size
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events btnUpload
-	#tag Event
-		Sub Pressed()
-		  FileUploader1.StartUpload
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events FileUploader1
-	#tag Event
-		Sub UploadFinished(files() As WebUploadedFile)
-		  Var saveFile As FolderItem
-		  
-		  For Each file As WebUploadedFile In Files
-		    saveFile = App.inputFolder.Child(file.Name)
-		    
-		    Try
-		      file.Save(saveFile)
-		    Catch e As IOException
-		      System.DebugLog(e.ErrorNumber.ToText)
-		      // File Error, skip file
-		      Continue
-		    End Try
-		  Next
-		  
-		  LoadFileList
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events btnImportAll
-	#tag Event
-		Sub Pressed()
-		  // Import all Files from Input Folder
-		  
-		  If App.inputFolder Is Nil Then
-		    Return
-		  End If
-		  
-		  Me.Caption = "<raw><span class=""spinner-border spinner-border-sm""></span></raw> Parsing..."
-		  Var i As Integer
-		  
-		  For Each file As Folderitem In App.inputFolder.Children
-		    
-		    If file <> Nil And file.Visible And Not file.IsFolder Then
-		      lblStatus.Text = "Start parsing " + file.name
-		      DocumentParser.ParsePDF(file.name)
-		      i = i + 1
-		      'ToDo: Check Parse Errors
-		    End If
-		    
-		    lblStatus.Text = Str(i) + " Documents parsed"
-		    
-		  Next
-		  
-		  LoadFileList
-		  Me.Caption = Strings.Import
 		End Sub
 	#tag EndEvent
 #tag EndEvents

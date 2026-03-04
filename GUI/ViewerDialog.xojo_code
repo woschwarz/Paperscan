@@ -296,7 +296,7 @@ Begin WebDialog ViewerDialog
       Height          =   38
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   761
+      Left            =   765
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -342,7 +342,7 @@ Begin WebDialog ViewerDialog
       Tooltip         =   ""
       Top             =   812
       Visible         =   True
-      Width           =   100
+      Width           =   110
       _mPanelIndex    =   -1
    End
 End

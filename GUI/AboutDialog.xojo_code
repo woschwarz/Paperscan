@@ -364,7 +364,7 @@ Begin WebDialog AboutDialog
          DisplayMode     =   1
          Enabled         =   True
          Height          =   70
-         Image           =   167106559
+         Image           =   933871615
          Index           =   -2147483648
          Indicator       =   0
          Left            =   120

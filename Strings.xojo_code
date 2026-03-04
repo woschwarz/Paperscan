@@ -3,7 +3,7 @@ Protected Module Strings
 	#tag Constant, Name = About, Type = String, Dynamic = True, Default = \"About", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"About"
 		#Tag Instance, Platform = Any, Language = fr, Definition  = \"Sur"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"About"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"\xC3\x9Cber"
 		#Tag Instance, Platform = Any, Language = it, Definition  = \"Informazioni su"
 		#Tag Instance, Platform = Any, Language = pt, Definition  = \"Acerca do"
 		#Tag Instance, Platform = Any, Language = es, Definition  = \"Acerca del"
@@ -36,12 +36,17 @@ Protected Module Strings
 
 	#tag Constant, Name = Date, Type = String, Dynamic = True, Default = \"Date", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Date"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Erstellt"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Datum"
+	#tag EndConstant
+
+	#tag Constant, Name = Documents, Type = String, Dynamic = True, Default = \"Documents", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Documents"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dokumente"
 	#tag EndConstant
 
 	#tag Constant, Name = Download, Type = String, Dynamic = True, Default = \"Download", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Download"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Download"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Herunterladen"
 	#tag EndConstant
 
 	#tag Constant, Name = File, Type = String, Dynamic = True, Default = \"File", Scope = Protected
@@ -74,6 +79,11 @@ Protected Module Strings
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Suchen"
 	#tag EndConstant
 
+	#tag Constant, Name = Settings, Type = String, Dynamic = True, Default = \"Settings", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Settings"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Einstellungen"
+	#tag EndConstant
+
 	#tag Constant, Name = Size, Type = String, Dynamic = True, Default = \"Size", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Size"
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Gr\xC3\xB6\xC3\x9Fe"
@@ -87,6 +97,11 @@ Protected Module Strings
 	#tag Constant, Name = Upload, Type = String, Dynamic = True, Default = \"Upload", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Upload"
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Hochladen"
+	#tag EndConstant
+
+	#tag Constant, Name = UploadDocuments, Type = String, Dynamic = True, Default = \"Upload documents", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Upload documents"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dokumente Hochladen"
 	#tag EndConstant
 
 

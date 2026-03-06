@@ -1,7 +1,7 @@
 #tag Module
 Protected Module DocumentParser
 	#tag Method, Flags = &h0
-		Function GetText(filename As Folderitem) As String
+		Function ExtractTextFromFile(filename As Folderitem) As String
 		  Var shcommand As String
 		  
 		  // The correct path must be used in Debug mode
@@ -13,19 +13,18 @@ Protected Module DocumentParser
 		  
 		  System.DebugLog(shcommand)
 		  
-		  Var s As Shell
-		  s = New Shell
+		  Var sh As New Shell
+		  sh.Execute(shcommand)
 		  
-		  s.Execute(shcommand)
-		  
-		  If s.ExitCode = 0 Then
-		    lastExitCode = s.ExitCode
+		  If sh.ExitCode = 0 Then
+		    lastExitCode = sh.ExitCode
 		    System.DebugLog("pdftotext ok")
-		    Return s.Result
+		    Var content As String = NormalizeSpaces(sh.Result)
+		    Return content
 		    
 		  Else
-		    lastExitCode = s.ExitCode
-		    System.DebugLog("pdftotext Errorcode " + s.ExitCode.ToString + ", Result: " + s.Result)
+		    lastExitCode = sh.ExitCode
+		    System.DebugLog("pdftotext Errorcode " + sh.ExitCode.ToString + ", Result: " + sh.Result)
 		    Return "Error"
 		  End If
 		  
@@ -37,27 +36,38 @@ Protected Module DocumentParser
 		  Var shcommand As String
 		  
 		  // The correct path must be used in Debug mode
-		  #If DebugBuild Then
+		  #If TargetMacOs And DebugBuild Then
 		    shcommand = "/opt/homebrew/bin/" //macOS
 		  #EndIf
 		  
 		  shcommand = shcommand + "gs -q -dNOPAUSE -sDEVICE=png16m -sOutputFile='" + outputFile.NativePath + ".png' -dLastPage=1 '" + inputFile.NativePath + "' -c quit"
 		  
-		  Var s As Shell
-		  s = New Shell
+		  Var sh As New Shell
+		  sh.Execute(shcommand)
 		  
-		  s.Execute(shcommand)
-		  
-		  If s.ExitCode = 0 Then
-		    lastExitCode = s.ExitCode
+		  If sh.ExitCode = 0 Then
+		    lastExitCode = sh.ExitCode
 		    System.DebugLog("Thumbnail ok")
 		    Return True
 		  Else
-		    lastExitCode = s.ExitCode
-		    System.DebugLog("Thumbnail Errorcode " + s.ExitCode.ToString + ", Result: " + s.Result)
+		    lastExitCode = sh.ExitCode
+		    System.DebugLog("Thumbnail Errorcode " + sh.ExitCode.ToString + ", Result: " + sh.Result)
 		    Return False
 		  End If
 		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function NormalizeSpaces(input As String) As String
+		  Var rx As New RegEx
+		  rx.SearchPattern = "\s{2,}" 
+		  rx.ReplacementPattern = " "
+		  rx.Options.ReplaceAllMatches = True 
+		  
+		  Var result As String = rx.Replace(input).Trim
+		  
+		  Return result.Trim
 		End Function
 	#tag EndMethod
 
@@ -68,11 +78,11 @@ Protected Module DocumentParser
 		  Var f As FolderItem
 		  f = New FolderItem(App.inputFolder.Child(pdfFilename)) 
 		  
-		  Var parsedPDF As String = GetText(f).Trim
+		  Var parsedPDF As String = ExtractTextFromFile(f).Trim
 		  If parsedPDF = "Error" Then Exit
 		  
 		  
-		  If Len(parsedPDF) <= 25 Then
+		  If parsedPDF.Length <= 25 Then
 		    // PDF contains less than 25 characters. 
 		    // It is probably an image-based PDF without markable text. 
 		    // Text recognition (OCR) must be performed.
@@ -80,7 +90,7 @@ Protected Module DocumentParser
 		    'ToDo
 		  End If
 		  
-		  If Len(parsedPDF) > 25 Then
+		  If parsedPDF.Length > 25 Then
 		    // Document has more than 25 characters, then it will be processed
 		    
 		    // Caching Filedata Variables

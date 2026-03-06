@@ -34,6 +34,11 @@ Protected Module Strings
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Erstellt"
 	#tag EndConstant
 
+	#tag Constant, Name = DarkMode, Type = String, Dynamic = True, Default = \"Dark mode", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Dark mode"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dunkler Modus"
+	#tag EndConstant
+
 	#tag Constant, Name = Date, Type = String, Dynamic = True, Default = \"Date", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Date"
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Datum"
@@ -62,6 +67,11 @@ Protected Module Strings
 	#tag Constant, Name = Import, Type = String, Dynamic = True, Default = \"Import", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Import"
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Importieren"
+	#tag EndConstant
+
+	#tag Constant, Name = LightMode, Type = String, Dynamic = True, Default = \"Light mode", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Light mode"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Heller Modus"
 	#tag EndConstant
 
 	#tag Constant, Name = Modified, Type = String, Dynamic = True, Default = \"Modified", Scope = Protected
@@ -101,7 +111,7 @@ Protected Module Strings
 
 	#tag Constant, Name = UploadDocuments, Type = String, Dynamic = True, Default = \"Upload documents", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Upload documents"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dokumente Hochladen"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dokumente hochladen"
 	#tag EndConstant
 
 

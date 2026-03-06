@@ -32,7 +32,6 @@ Begin WebPage SettingsPage
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
-   _mName          =   ""
    _mPanelIndex    =   -1
    Begin MainWebToolbar MainToolbar
       ControlID       =   ""
@@ -107,12 +106,12 @@ Begin WebPage SettingsPage
          Index           =   -2147483648
          Indicator       =   ""
          Italic          =   False
-         Left            =   500
-         LockBottom      =   True
+         Left            =   450
+         LockBottom      =   False
          LockedInPosition=   False
-         LockHorizontal  =   False
-         LockLeft        =   True
-         LockRight       =   True
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
@@ -122,14 +121,260 @@ Begin WebPage SettingsPage
          TabIndex        =   4
          TabPanelIndex   =   0
          TabStop         =   True
-         Text            =   "coming next ..."
+         Text            =   "more coming next ..."
          TextAlignment   =   2
          TextColor       =   &c000000FF
          Tooltip         =   ""
-         Top             =   410
+         Top             =   558
          Underline       =   False
          Visible         =   True
-         Width           =   200
+         Width           =   300
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel lblHomebrew
+         Bold            =   False
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   307
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         Scope           =   2
+         TabIndex        =   6
+         TabStop         =   True
+         Text            =   "Hombrew Version"
+         TextAlignment   =   0
+         TextColor       =   &c000000FF
+         Tooltip         =   ""
+         Top             =   147
+         Underline       =   False
+         Visible         =   True
+         Width           =   600
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel lblGhostscript
+         Bold            =   False
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         indicator       =   0
+         Italic          =   False
+         Left            =   307
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         Scope           =   2
+         TabIndex        =   7
+         TabStop         =   True
+         Text            =   "Ghostscript Version"
+         TextAlignment   =   0
+         TextColor       =   &c000000FF
+         Tooltip         =   ""
+         Top             =   193
+         Underline       =   False
+         Visible         =   True
+         Width           =   600
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel lblPoppler
+         Bold            =   False
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         indicator       =   0
+         Italic          =   False
+         Left            =   307
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         Scope           =   2
+         TabIndex        =   8
+         TabStop         =   True
+         Text            =   "Poppler Version"
+         TextAlignment   =   0
+         TextColor       =   &c000000FF
+         Tooltip         =   ""
+         Top             =   239
+         Underline       =   False
+         Visible         =   True
+         Width           =   600
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel lblTesseract
+         Bold            =   False
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         indicator       =   0
+         Italic          =   False
+         Left            =   307
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         Scope           =   2
+         TabIndex        =   9
+         TabStop         =   True
+         Text            =   "Tesseract Version"
+         TextAlignment   =   0
+         TextColor       =   &c000000FF
+         Tooltip         =   ""
+         Top             =   285
+         Underline       =   False
+         Visible         =   True
+         Width           =   600
+         _mPanelIndex    =   -1
+      End
+      Begin WebTextField edtInboxFolder
+         AllowAutoComplete=   False
+         AllowSpellChecking=   False
+         Caption         =   "Inbox File Folder"
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         FieldType       =   0
+         Height          =   62
+         Hint            =   ""
+         Index           =   -2147483648
+         Indicator       =   ""
+         Left            =   307
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         MaximumCharactersAllowed=   0
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         ReadOnly        =   False
+         Scope           =   2
+         TabIndex        =   10
+         TabStop         =   True
+         Text            =   ""
+         TextAlignment   =   0
+         Tooltip         =   ""
+         Top             =   356
+         Visible         =   True
+         Width           =   600
+         _mPanelIndex    =   -1
+      End
+      Begin WebTextField edtDocumentFolder
+         AllowAutoComplete=   False
+         AllowSpellChecking=   False
+         Caption         =   "Document File Folder"
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         FieldType       =   0
+         Height          =   62
+         Hint            =   ""
+         Index           =   -2147483648
+         indicator       =   0
+         Left            =   307
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         MaximumCharactersAllowed=   0
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         ReadOnly        =   False
+         Scope           =   2
+         TabIndex        =   11
+         TabStop         =   True
+         Text            =   ""
+         TextAlignment   =   0
+         Tooltip         =   ""
+         Top             =   440
+         Visible         =   True
+         Width           =   600
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel lblSettings
+         Bold            =   False
+         ControlID       =   ""
+         CSSClasses      =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   24.0
+         Height          =   38
+         Index           =   -2147483648
+         indicator       =   0
+         Italic          =   False
+         Left            =   307
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   True
+         LockLeft        =   False
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         PanelIndex      =   0
+         Parent          =   "rctFormContent"
+         Scope           =   2
+         TabIndex        =   12
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "#Strings.Settings"
+         TextAlignment   =   1
+         TextColor       =   &c000000FF
+         Tooltip         =   ""
+         Top             =   90
+         Underline       =   False
+         Visible         =   True
+         Width           =   300
          _mPanelIndex    =   -1
       End
    End
@@ -137,6 +382,62 @@ End
 #tag EndWebPage
 
 #tag WindowCode
+	#tag Event
+		Sub Opening()
+		  CheckUtils
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h21
+		Private Sub CheckUtils()
+		  Var shcommand As String
+		  
+		  // The correct path must be used in Debug mode
+		  #If TargetMacOs And DebugBuild Then
+		    shcommand = "/opt/homebrew/bin/" //macOS
+		  #EndIf
+		  
+		  // check Homebrew
+		  Var sh As New Shell
+		  sh.Execute(shcommand+ "brew --version")
+		  
+		  If sh.ExitCode = 0 Then
+		    lblHomebrew.Text = "✅" + " Homebrew - " + sh.Result.Trim
+		  Else
+		    lblHomebrew.Text = "❌" + " Homebrew (Error-code: " + sh.ExitCode.ToString + ")"
+		  End If
+		  
+		  // check ghostscript
+		  sh.Execute(shcommand+ "gs --version")
+		  
+		  If sh.ExitCode = 0 Then
+		    lblGhostscript.Text = "✅" + " ghostscript - " + sh.Result.Trim
+		  Else
+		    lblGhostscript.Text = "❌" + " ghostscript (Error-code: " + sh.ExitCode.ToString + ")"
+		  End If
+		  
+		  // check poppler-utils
+		  sh.Execute(shcommand+ "pdftotext -v")
+		  
+		  If sh.ExitCode = 0 Then
+		    lblPoppler.Text = "✅" + " pdftotext - " + sh.Result.Trim
+		  Else
+		    lblPoppler.Text = "❌" + " pdftotext (Error-code: " + sh.ExitCode.ToString + ")"
+		  End If
+		  
+		  // check tesseract
+		  sh.Execute(shcommand+ "tesseract --version")
+		  
+		  If sh.ExitCode = 0 Then
+		    lblTesseract.Text = "✅" + " tesseract - " + sh.Result.Trim
+		  Else
+		    lblTesseract.Text = "❌" + " tesseract (Error-code: " + sh.ExitCode.ToString + ")"
+		  End If
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events rctFormContent
@@ -146,6 +447,22 @@ End
 		  Me.Style.Value("gap") = "20px;"
 		  Me.Style.Value("max-width") = "1200px;"
 		  Me.Style.Value("margin") = "auto;"
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events edtInboxFolder
+	#tag Event
+		Sub Shown()
+		  Me.Text = App.inputFolder.NativePath
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events edtDocumentFolder
+	#tag Event
+		Sub Shown()
+		  Me.Text = App.documentFolder.NativePath
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

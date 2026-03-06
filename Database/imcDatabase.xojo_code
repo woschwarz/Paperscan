@@ -81,7 +81,7 @@ Inherits SQLiteDatabase
 		    sql  = "SELECT id, filename, content, created FROM documents WHERE filename LIKE ? OR content LIKE ? ORDER BY filename"
 		    rs  = Self.SelectSQL(sql, "%" + searchName + "%", "%" + searchName + "%")
 		  Else
-		    sql = "SELECT id, filename, created FROM documents"
+		    sql = "SELECT id, filename, created FROM documents ORDER BY created DESC"
 		    rs = Self.SelectSQL(sql)
 		  End If
 		  

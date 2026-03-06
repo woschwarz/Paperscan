@@ -68,12 +68,12 @@ Inherits WebToolbar
 		  btn.Menu.AddMenuItem(m)
 		  
 		  m = New WebMenuItem
-		  m.Text = "Light Mode"
+		  m.Text = Strings.LightMode
 		  m.tag = "light"
 		  btn.Menu.AddMenuItem(m)
 		  
 		  m = New WebMenuItem
-		  m.Text = "Dark Mode"
+		  m.Text = Strings.DarkMode
 		  m.tag = "dark"
 		  btn.Menu.AddMenuItem(m)
 		  

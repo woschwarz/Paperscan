@@ -73,7 +73,7 @@ Begin WebPage UploadPage
       HasFillColor    =   False
       Height          =   743
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       LayoutDirection =   "LayoutDirections.LeftToRight"
       LayoutType      =   "LayoutTypes.Fixed"
       Left            =   0
@@ -97,8 +97,8 @@ Begin WebPage UploadPage
       _mPanelIndex    =   -1
       Begin WebListBox UploadList
          AllowRowReordering=   False
-         ColumnCount     =   3
-         ColumnWidths    =   ""
+         ColumnCount     =   4
+         ColumnWidths    =   "*,200,200,70"
          ControlID       =   ""
          CSSClasses      =   ""
          DefaultRowHeight=   49
@@ -108,10 +108,10 @@ Begin WebPage UploadPage
          HasHeader       =   True
          HeaderHeight    =   0
          Height          =   597
-         HighlightSortedColumn=   True
+         HighlightSortedColumn=   False
          Index           =   -2147483648
          Indicator       =   ""
-         InitialValue    =   "Filename	Date	Size"
+         InitialValue    =   "Filename	Date	Size	Action"
          LastAddedRowIndex=   0
          LastColumnIndex =   0
          LastRowIndex    =   0
@@ -128,12 +128,13 @@ Begin WebPage UploadPage
          Parent          =   "rctFormContent"
          ProcessingMessage=   ""
          RowCount        =   0
-         RowSelectionType=   1
+         RowSelectionType=   0
          Scope           =   2
          SearchCriteria  =   ""
-         SelectedRowColor=   &c0d6efd
+         SelectedRowColor=   &c51926B00
          SelectedRowIndex=   0
          TabIndex        =   0
+         TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
          Top             =   135
@@ -165,6 +166,7 @@ Begin WebPage UploadPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   1
+         TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
          Top             =   76
@@ -197,6 +199,7 @@ Begin WebPage UploadPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   2
+         TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
          Top             =   76
@@ -229,6 +232,7 @@ Begin WebPage UploadPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   3
+         TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
          Top             =   742
@@ -260,6 +264,7 @@ Begin WebPage UploadPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   4
+         TabPanelIndex   =   0
          TabStop         =   True
          Text            =   ""
          TextAlignment   =   0
@@ -295,21 +300,26 @@ End
 		  // Clear Listbox
 		  UploadList.RemoveAllRows
 		  
+		  // Create a Webstyle for Trash
+		  Var style As New WebStyle
+		  style.Value("text-align") = "center"
+		  style.Cursor = Webstyle.Cursors.Pointer
+		  Var cellRenderer As New WebListBoxStyleRenderer(style, "🗑️")
 		  
+		  // Fill Listbox 
 		  For Each file As Folderitem In App.inputFolder.Children
 		    If file <> Nil And file.Visible And Not file.IsFolder Then
 		      UploadList.AddRow(file.Name)
 		      
 		      Var modDate As String
 		      modDate = file.ModificationDateTime.ToString(Locale.Current, DateTime.FormatStyles.Short, DateTime.FormatStyles.Short)
-		      UploadList.CellValueAt(UploadList.LastAddedRowIndex, 1) = modDate
+		      UploadList.CellTextAt(UploadList.LastAddedRowIndex, 1) = modDate
 		      
 		      size = file.Length
 		      
-		      UploadList.CellValueAt(UploadList.LastAddedRowIndex, 2) = Str(size) + " bytes"
-		      
+		      UploadList.CellTextAt(UploadList.LastAddedRowIndex, 2) = Str(size) + " bytes"
+		      UploadList.CellRendererAt(UploadList.LastAddedRowIndex, 3) = cellRenderer
 		    End If
-		    
 		    
 		  Next
 		  
@@ -349,6 +359,22 @@ End
 		  Me.HeaderAt(2) = Strings.Size
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Pressed(row As Integer, column As Integer)
+		  If  row >=0 And column = 3 Then
+		    Var f As Folderitem = App.inputFolder.Child(Me.CellTextAt(row, 0))
+		    
+		    Try
+		      f.Remove
+		      LoadFileList
+		    Catch error As IOException
+		      MessageBox(error.Message)
+		    End Try
+		    
+		  End If
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events btnUpload
 	#tag Event
@@ -369,7 +395,7 @@ End
 		    Try
 		      file.Save(saveFile)
 		    Catch e As IOException
-		      System.DebugLog(e.ErrorNumber.ToText)
+		      System.DebugLog(e.ErrorNumber.ToString)
 		      // File Error, skip file
 		      Continue
 		    End Try

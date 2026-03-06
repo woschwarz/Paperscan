@@ -104,7 +104,7 @@ Begin WebPage MainPage
       HasFillColor    =   False
       Height          =   743
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       LayoutDirection =   "LayoutDirections.LeftToRight"
       LayoutType      =   "LayoutTypes.Fixed"
       Left            =   0
@@ -162,9 +162,10 @@ Begin WebPage MainPage
          RowSelectionType=   1
          Scope           =   2
          SearchCriteria  =   ""
-         SelectedRowColor=   &c0d6efd
+         SelectedRowColor=   &c51926B00
          SelectedRowIndex=   0
          TabIndex        =   7
+         TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
          Top             =   138
@@ -192,6 +193,7 @@ Begin WebPage MainPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   8
+         TabPanelIndex   =   0
          TabStop         =   True
          Text            =   ""
          Tooltip         =   ""
@@ -233,7 +235,7 @@ End
 		      
 		      #If DebugBuild Then System.DebugLog rs.Column("filename").StringValue
 		      
-		      FileList.AddRow(icon, rs.Column("filename").StringValue, rs.Column("created").StringValue)
+		      FileList.AddRow(icon, "<raw><span style='cursor:pointer'>" + rs.Column("filename").StringValue + "</span></raw>", rs.Column("created").StringValue)
 		      'FileList.AddRow("pic", rs.Column("filename").StringValue, rs.Column("created").StringValue)
 		      FileList.CellTagAt(FileList.LastAddedRowIndex, 0) = rs.Column("id").StringValue
 		      'FileList.CellValueAt(FileList.LastAddedRowIndex, 0) = pic
@@ -267,12 +269,13 @@ End
 #tag Events FileList
 	#tag Event
 		Sub Pressed(row As Integer, column As Integer)
-		  If row >= 0 Then
+		  If  row >=0 And column = 1 Then
 		    
 		    PDFViewer.Show
 		    PDFViewer.ShowPDFbyID(Me.CellTagAt(FileList.SelectedRowIndex, 0))
 		    
 		  End If
+		  
 		  
 		End Sub
 	#tag EndEvent

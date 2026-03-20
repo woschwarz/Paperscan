@@ -25,6 +25,7 @@ Begin WebDialog AboutDialog
    Width           =   400
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebButton btnClose
       AllowAutoDisable=   False
@@ -117,7 +118,7 @@ Begin WebDialog AboutDialog
          TabIndex        =   0
          TabPanelIndex   =   0
          TabStop         =   True
-         Text            =   "Papperscan"
+         Text            =   "Paperscan"
          TextAlignment   =   2
          TextColor       =   &c000000FF
          Tooltip         =   ""

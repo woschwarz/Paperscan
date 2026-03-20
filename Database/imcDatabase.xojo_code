@@ -63,37 +63,75 @@ Inherits SQLiteDatabase
 
 	#tag Method, Flags = &h0
 		Function FindFileByID(id As String) As RowSet
-		  Var sql As String = "SELECT * FROM documents WHERE id = ?"
-		  Var rs As RowSet = Self.SelectSQL(sql, id)
+		  Try
+		    Var sql As String = "SELECT * FROM documents WHERE id = ?"
+		    Var rs As RowSet = Self.SelectSQL(sql, id)
+		    
+		    #If DebugBuild Then System.DebugLog(sql)
+		    
+		    Return rs
+		    
+		  Catch error As DatabaseException
+		    System.DebugLog("FindFileByID Error: " + error.Message)
+		  End Try
 		  
-		  #If DebugBuild Then System.DebugLog(sql)
-		  
-		  Return rs
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function FindFileByName(Optional searchName AS String) As RowSet
-		  Var sql As String 
-		  var rs As RowSet
-		  
-		  If searchName <> "" Then
-		    sql  = "SELECT id, filename, content, created FROM documents WHERE filename LIKE ? OR content LIKE ? ORDER BY filename"
-		    rs  = Self.SelectSQL(sql, "%" + searchName + "%", "%" + searchName + "%")
-		  Else
-		    sql = "SELECT id, filename, created FROM documents ORDER BY created DESC"
-		    rs = Self.SelectSQL(sql)
-		  End If
-		  
-		  #If DebugBuild Then System.DebugLog(sql)
-		  
-		  Return rs
+		Function FindFileByName(Optional searchName As String) As RowSet
+		  Try
+		    Var sql As String 
+		    var rs As RowSet
+		    
+		    If searchName <> "" Then
+		      sql  = "SELECT id, filename, content, created_at FROM documents WHERE filename LIKE ? OR content LIKE ? ORDER BY filename"
+		      rs  = Self.SelectSQL(sql, "%" + searchName + "%", "%" + searchName + "%")
+		    Else
+		      sql = "SELECT id, filename, content, created_at FROM documents ORDER BY created_at DESC"
+		      rs = Self.SelectSQL(sql)
+		    End If
+		    
+		    #If DebugBuild Then System.DebugLog(sql)
+		    
+		    Return rs
+		    
+		  Catch error As DatabaseException
+		    System.DebugLog("FindFileByName Error: " + error.Message)
+		  End Try
 		  
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function GetDocumentCount() As Integer
+		  Try
+		    Var rs As RowSet = Self.SelectSQL("SELECT COUNT(1) AS total_count FROM documents WHERE deleted_at IS NULL")
+		    If rs = Nil Or rs.AfterLastRow Then Return 0
+		    Return rs.Column("total_count").IntegerValue
+		    
+		  Catch error As DatabaseException
+		    System.DebugLog("Document Count Error: " + error.Message)
+		  End Try
+		  
+		  Return 0
+		End Function
+	#tag EndMethod
 
-	#tag Constant, Name = kCreateDatabase, Type = String, Dynamic = False, Default = \"CREATE TABLE documents (id INTEGER\x2C status TEXT\x2C title TEXT\x2C filename TEXT\x2C content TEXT\x2C file_type TEXT\x2C document_type_id INTEGER\x2C correspondent_id INTEGER\x2C mime_type TEXT\x2C archive_checksum TEXT\x2C created DATETIME\x2C modified DATETIME\x2C added DATETIME\x2C PRIMARY KEY(id));\nCREATE TABLE document_tags (id INTEGER\x2C document_id INTEGER\x2C tag_id INTEGER\x2C PRIMARY KEY(id));\nCREATE TABLE correspondent (id INTEGER\x2C name TEXT\x2C match TEXT\x2C matching_algorithm INTEGER\x2C is_sensitive BOOL\x2C PRIMARY KEY(id));\nCREATE TABLE document_type (id INTEGER\x2C name TEXT\x2C match TEXT\x2C matching_algorithm INTEGER\x2C is_sensitive BOOL\x2C PRIMARY KEY(id));\nCREATE TABLE log (id INTEGER\x2C level TEXT\x2C message TEXT\x2C created DATETIME\x2C PRIMARY KEY(id));\nCREATE TABLE core_tags (id INTEGER\x2C name TEXT\x2C colour TEXT\x2C match TEXT\x2C matching_algorithm INTEGER\x2C is_sensitive BOOL\x2C PRIMARY KEY(id));", Scope = Public
+	#tag Method, Flags = &h0
+		Function GetLatestDocuments(limit As Integer = 10) As RowSet
+		  Try
+		    Var sql As String = "SELECT id, filename, created_at FROM documents WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT ?"
+		    Return Self.SelectSQL(sql, limit)
+		  Catch e As DatabaseException
+		    System.DebugLog("GetLatestDocuments Error: " + e.Message)
+		    Return Nil
+		  End Try
+		End Function
+	#tag EndMethod
+
+
+	#tag Constant, Name = kCreateDatabase, Type = String, Dynamic = False, Default = \"CREATE TABLE \"company\"(\n\t\"id\" Integer PRIMARY KEY AUTOINCREMENT\x2C\n\t\"name\" Text NOT NULL\x2C\n\t\"created_at\" DateTime NOT NULL\x2C\n\t\"updated_at\" DateTime NOT NULL\x2C\n\t\"deleted_by\" Text\x2C\n\t\"deleted_at\" DateTime );\n\nINSERT INTO \"company\" (\"id\"\x2C\"name\"\x2C\"created_at\"\x2C\"updated_at\") VALUES ( 1\x2C \'my organization\'\x2C \'1970-01-01 01:00:00.000\'\x2C \'1970-01-01 01:00:00.000\');\n\nCREATE TABLE \"db_info\"(\n\t\"version\" Integer NOT NULL );\n\nINSERT INTO \"db_info\" (\"version\") VALUES ( 1 );\n\nCREATE TABLE \"documents\"(\n\t\"id\" Integer PRIMARY KEY AUTOINCREMENT\x2C\n\t\"company_id\" Integer NOT NULL\x2C\n\t\"filename\" Text NOT NULL\x2C\n\t\"content\" Text NOT NULL DEFAULT \'\'\x2C\n\t\"original_filename\" Text NOT NULL\x2C\n\t\"original_size\" Integer NOT NULL DEFAULT 0\x2C\n\t\"original_sha256_hash\" Text\x2C\n\t\"original_created_at\" DateTime NOT NULL\x2C\n\t\"original_modified_at\" DateTime NOT NULL\x2C\n\t\"mime_type\" Text NOT NULL\x2C\n\t\"created_at\" DateTime NOT NULL\x2C\n\t\"updated_at\" DateTime\x2C\n\t\"is_deleted\" Integer NOT NULL DEFAULT false\x2C\n\t\"deleted_at\" DateTime\x2C\n\t\"created_by\" Text\x2C\n\t\"deleted_by\" Text );\n\nCREATE TABLE \"documents_tags\"(\n\t\"document_id\" Integer NOT NULL\x2C\n\t\"tag_id\" Integer NOT NULL\x2C\nPRIMARY KEY ( \"document_id\"\x2C \"tag_id\" ) );\n\nCREATE TABLE \"log\"(\n\t\"id\" Integer PRIMARY KEY AUTOINCREMENT\x2C\n\t\"document_id\" Integer\x2C\n\t\"user_id\" Integer\x2C\n\t\"event\" Text NOT NULL\x2C\n\t\"event_data\" Text\x2C\n\t\"created_at\" DateTime NOT NULL );\n\nCREATE TABLE \"tags\"(\n\t\"id\" Integer PRIMARY KEY AUTOINCREMENT\x2C\n\t\"company_id\" Integer NOT NULL\x2C\n\t\"name\" Text NOT NULL\x2C\n\t\"color\" Text NOT NULL\x2C\n\t\"description\" Text\x2C\n\t\"created_at\" DateTime NOT NULL\x2C\n\t\"updated_at\" DateTime NOT NULL );\n\nCREATE TABLE \"users\"(\n\t\"id\" Integer PRIMARY KEY AUTOINCREMENT\x2C\n\t\"full_name\" Text\x2C\n\t\"password\" Text NOT NULL\x2C\n\t\"image\" Text\x2C\n\t\"color_mode\" TEXT\x2C\n\t\"email\" Text NOT NULL\x2C\n\t\"email_verified\" Integer NOT NULL DEFAULT false\x2C\n\t\"two_factor_enabled\" Integer NOT NULL DEFAULT false\x2C\n\t\"is_admin\" Integer\x2C\n\t\"created_at\" DateTime NOT NULL\x2C\n\t\"updated_at\" DateTime\x2C\nCONSTRAINT \"unique_email\" UNIQUE ( email ) );\n\nINSERT INTO \"users\" (\"id\"\x2C\"full_name\"\x2C\"password\"\x2C\"email\"\x2C\"is_admin\"\x2C \"created_at\") VALUES ( 1\x2C \'Administrator\'\x2C \'\'\x2C\'admin@example.com\'\x2C \'true\'\x2C \'1970-01-01 01:00:00.000\');\n\n\nCREATE TABLE \"webhooks\"(\n\t\"id\" Integer PRIMARY KEY AUTOINCREMENT\x2C\n\t\"company_id\" Integer NOT NULL\x2C\n\t\"name\" Text NOT NULL\x2C\n\t\"url\" Text NOT NULL\x2C\n\t\"secret\" Text\x2C\n\t\"active\" Integer NOT NULL DEFAULT True\x2C\n\t\"created_at\" DateTime NOT NULL\x2C\n\t\"updated_at\" DateTime\x2C\n\t\"deleted_at\" DateTime );", Scope = Public
 	#tag EndConstant
 
 

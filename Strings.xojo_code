@@ -9,7 +9,12 @@ Protected Module Strings
 		#Tag Instance, Platform = Any, Language = es, Definition  = \"Acerca del"
 	#tag EndConstant
 
-	#tag Constant, Name = Added, Type = String, Dynamic = True, Default = \"added", Scope = Protected
+	#tag Constant, Name = Action, Type = String, Dynamic = True, Default = \"Action", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Action"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Aktion"
+	#tag EndConstant
+
+	#tag Constant, Name = Added, Type = String, Dynamic = True, Default = \"Added", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Added"
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Hinzugef\xC3\xBCgt"
 	#tag EndConstant
@@ -49,6 +54,11 @@ Protected Module Strings
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dokumente"
 	#tag EndConstant
 
+	#tag Constant, Name = DocumentsTotal, Type = String, Dynamic = True, Default = \"Documents in total", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Documents in total"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dokumente insgesamt"
+	#tag EndConstant
+
 	#tag Constant, Name = Download, Type = String, Dynamic = True, Default = \"Download", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Download"
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Herunterladen"
@@ -67,6 +77,16 @@ Protected Module Strings
 	#tag Constant, Name = Import, Type = String, Dynamic = True, Default = \"Import", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Import"
 		#Tag Instance, Platform = Any, Language = de, Definition  = \"Importieren"
+	#tag EndConstant
+
+	#tag Constant, Name = ImportDocument, Type = String, Dynamic = True, Default = \"Import a document", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Import a document"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Dokument importieren"
+	#tag EndConstant
+
+	#tag Constant, Name = LatestimportedDocuments, Type = String, Dynamic = True, Default = \"Latest imported documents", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Latest imported documents"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Zuletzt importierte Dokumente"
 	#tag EndConstant
 
 	#tag Constant, Name = LightMode, Type = String, Dynamic = True, Default = \"Light mode", Scope = Protected

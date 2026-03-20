@@ -1,0 +1,9 @@
+#tag ColorGroup
+	CodeName=WrapperBackground01
+	#tag Color
+		Type=1
+		Platform=3
+		Light=F8F8F900
+		Dark=2F323600
+	#tag EndColor
+#tag EndColorGroup

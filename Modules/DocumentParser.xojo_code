@@ -2,19 +2,18 @@
 Protected Module DocumentParser
 	#tag Method, Flags = &h0
 		Function ExtractTextFromFile(filename As Folderitem) As String
-		  Var shcommand As String
+		  Var sh As New Shell
+		  Var shellcmd As String
 		  
 		  // The correct path must be used in Debug mode
 		  #If TargetMacOs and DebugBuild Then
-		    shcommand = "/opt/homebrew/bin/" //macOS
+		    shellcmd = "/opt/homebrew/bin/" //macOS
 		  #EndIf
 		  
-		  shcommand = shcommand  + "pdftotext -layout -enc UTF-8 '" + filename.NativePath + "' -"
+		  shellcmd = shellcmd  + "pdftotext -layout -enc UTF-8 " + filename.ShellPath + " -"
+		  sh.Execute(shellcmd)
 		  
-		  System.DebugLog(shcommand)
-		  
-		  Var sh As New Shell
-		  sh.Execute(shcommand)
+		  #If DebugBuild Then System.DebugLog(shellcmd)
 		  
 		  If sh.ExitCode = 0 Then
 		    lastExitCode = sh.ExitCode
@@ -33,17 +32,17 @@ Protected Module DocumentParser
 
 	#tag Method, Flags = &h0
 		Function MakeThumbnail(inputFile As FolderItem, outputFile As FolderItem) As Boolean
-		  Var shcommand As String
+		  Var sh As New Shell
+		  Var shellcmd As String
+		  Var outputPng As FolderItem = outputFile.Parent.Child(outputFile.Name + ".png")
 		  
 		  // The correct path must be used in Debug mode
 		  #If TargetMacOs And DebugBuild Then
-		    shcommand = "/opt/homebrew/bin/" //macOS
+		    shellcmd = "/opt/homebrew/bin/" //macOS
 		  #EndIf
 		  
-		  shcommand = shcommand + "gs -q -dNOPAUSE -sDEVICE=png16m -sOutputFile='" + outputFile.NativePath + ".png' -dLastPage=1 '" + inputFile.NativePath + "' -c quit"
-		  
-		  Var sh As New Shell
-		  sh.Execute(shcommand)
+		  shellcmd = shellcmd + "gs -q -dNOPAUSE -sDEVICE=png16m -sOutputFile=" + outputPng.ShellPath + " -dLastPage=1 " + inputFile.ShellPath + " -c quit"
+		  sh.Execute(shellcmd)
 		  
 		  If sh.ExitCode = 0 Then
 		    lastExitCode = sh.ExitCode
@@ -72,78 +71,94 @@ Protected Module DocumentParser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ParsePDF(pdfFilename As String)
+		Function ParsePDF(pdfFilename As String) As ImportResult
 		  System.DebugLog("Start parsing " + pdfFilename)
 		  
 		  Var f As FolderItem
 		  f = New FolderItem(App.inputFolder.Child(pdfFilename)) 
 		  
-		  Var parsedPDF As String = ExtractTextFromFile(f).Trim
-		  If parsedPDF = "Error" Then Exit
+		  Var result As New ImportResult
+		  result.StartedAt = DateTime.Now
+		  result.SourceFile = If(pdfFilename <> "", pdfFilename, "")
+		  result.Status = "failed"
+		  result.Success = False
 		  
 		  
-		  If parsedPDF.Length <= 25 Then
-		    // PDF contains less than 25 characters. 
-		    // It is probably an image-based PDF without markable text. 
-		    // Text recognition (OCR) must be performed.
-		    
-		    'ToDo
-		  End If
-		  
-		  If parsedPDF.Length > 25 Then
-		    // Document has more than 25 characters, then it will be processed
-		    
-		    // Caching Filedata Variables
-		    Var CreationDate As String = f.CreationDateTime.SQLDateTime
-		    Var ModificationDate As String = f.ModificationDateTime.SQLDateTime
-		    
-		    // Make a Thumbnail Image
-		    Var g As FolderItem = App.thumbnailFolder.Child(pdfFileName)
-		    If MakeThumbnail(f, g) Then
-		      System.DebugLog("Thumbnail created")
-		    Else
-		      System.DebugLog("Thumbnail error")
+		  Try
+		    // Parse Text
+		    Var parsedPDF As String = ExtractTextFromFile(f).Trim
+		    If parsedPDF = "Error" Then 
+		      result.Message = "Text extraction failed."
+		      result.FinishedAt = DateTime.Now
+		      Return result
 		    End If
 		    
-		    // Move PDF File to Media/Document Folder and save into Database
-		    Var h As FolderItem = App.documentFolder.Child(pdfFileName)
 		    
-		    // If the Filename is already exists, it cannot be moved
-		    If h <> Nil Then
+		    If parsedPDF.Length <= 25 Then
+		      // PDF contains less than 25 characters. 
+		      // It is probably an image-based PDF without markable text. 
+		      // Text recognition (OCR) must be performed.
 		      
-		      Try
-		        f.MoveTo(h) 
-		      Catch e As IOException
-		        System.DebugLog("An IO exception occurred with MoveTo " + e.Message + " (Error: " + e.ErrorNumber.toString + ")")
-		        Exit
-		      End Try
-		      
+		      'ToDo
 		    End If
 		    
-		    // Save into DB
-		    Var row As New DatabaseRow
-		    
-		    row.Column("filename").StringValue = f.Name
-		    row.Column("content").StringValue = parsedPDF
-		    row.Column("created").StringValue = CreationDate
-		    row.Column("modified").StringValue = ModificationDate
-		    row.Column("added").StringValue = DateTime.Now.SQLDateTime
-		    
-		    Try
+		    If parsedPDF.Length > 25 Then
+		      // Document has more than 25 characters, then it will be processed
+		      
+		      // Caching Filedata Variables
+		      Var CreationDate As String = f.CreationDateTime.SQLDateTime
+		      Var ModificationDate As String = f.ModificationDateTime.SQLDateTime
+		      
+		      // Make a Thumbnail Image
+		      Var thumbTarget As FolderItem = App.thumbnailFolder.Child(pdfFileName)
+		      If Not MakeThumbnail(f, thumbTarget) Then
+		        result.Message = "Thumbnail creation failed"
+		        result.FinishedAt = DateTime.Now
+		        Return Result
+		      End If
+		      
+		      // Move PDF File to Media/Document Folder and save into Database
+		      Var targetPdf As FolderItem = App.documentFolder.Child(pdfFileName)
+		      f.MoveTo(targetPdf)
+		      
+		      // Save into DB
+		      Var row As New DatabaseRow
+		      
+		      row.Column("company_id").IntegerValue = Session.mCompanyID
+		      row.Column("filename").StringValue = f.Name
+		      row.Column("content").StringValue = parsedPDF
+		      row.Column("mime_type").StringValue = f.Type
+		      row.Column("original_filename").StringValue = f.Name
+		      row.Column("original_created_at").StringValue = CreationDate
+		      row.Column("original_modified_at").StringValue = ModificationDate
+		      row.Column("created_at").StringValue = DateTime.Now.SQLDateTime
+		      row.Column("created_by").StringValue = Session.mUserName
+		      
 		      Session.imcDB.AddRow("documents", row)
 		      System.DebugLog("Import in DB " + pdfFileName)
-		    Catch e As DatabaseException
-		      MessageBox("DB Error: " + e.Message)
-		      System.DebugLog(e.Message)
-		    End Try
+		      
+		      result.Success = True
+		      result.Status = "done"
+		      result.Message = "Imported successfully."
+		      
+		    End If
 		    
-		  End If
+		  Catch e As DatabaseException
+		    MessageBox ("DB Error: " + e.Message)
+		    System.DebugLog(e.Message)
+		    
+		  Catch e As IOException
+		    System.DebugLog("An IO exception occurred with MoveTo " + e.Message + " (Error: " + e.ErrorNumber.toString + ")")
+		    
+		  Catch e As RuntimeException
+		    System.DebugLog("Runtime error: " + e.Message)
+		    
+		  End Try
 		  
-		  If lastExitCode = 0 Then
-		    // Parsing finished
-		  End If
+		  result.FinishedAt = DateTime.Now
+		  Return result
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 

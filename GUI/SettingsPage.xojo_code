@@ -50,7 +50,7 @@ Begin WebPage SettingsPage
       LockTop         =   True
       LockVertical    =   False
       PanelIndex      =   0
-      Position        =   0
+      Position        =   1
       Scope           =   0
       TabIndex        =   2
       TabStop         =   True
@@ -155,8 +155,9 @@ Begin WebPage SettingsPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   6
+         TabPanelIndex   =   0
          TabStop         =   True
-         Text            =   "Hombrew Version"
+         Text            =   "Homebrew Version"
          TextAlignment   =   0
          TextColor       =   &c000000FF
          Tooltip         =   ""
@@ -175,7 +176,7 @@ Begin WebPage SettingsPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         indicator       =   0
+         Indicator       =   0
          Italic          =   False
          Left            =   307
          LockBottom      =   False
@@ -190,6 +191,7 @@ Begin WebPage SettingsPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   7
+         TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Ghostscript Version"
          TextAlignment   =   0
@@ -210,7 +212,7 @@ Begin WebPage SettingsPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         indicator       =   0
+         Indicator       =   0
          Italic          =   False
          Left            =   307
          LockBottom      =   False
@@ -225,6 +227,7 @@ Begin WebPage SettingsPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   8
+         TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Poppler Version"
          TextAlignment   =   0
@@ -245,7 +248,7 @@ Begin WebPage SettingsPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         indicator       =   0
+         Indicator       =   0
          Italic          =   False
          Left            =   307
          LockBottom      =   False
@@ -260,6 +263,7 @@ Begin WebPage SettingsPage
          Parent          =   "rctFormContent"
          Scope           =   2
          TabIndex        =   9
+         TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Tesseract Version"
          TextAlignment   =   0
@@ -297,6 +301,7 @@ Begin WebPage SettingsPage
          ReadOnly        =   False
          Scope           =   2
          TabIndex        =   10
+         TabPanelIndex   =   0
          TabStop         =   True
          Text            =   ""
          TextAlignment   =   0
@@ -317,7 +322,7 @@ Begin WebPage SettingsPage
          Height          =   62
          Hint            =   ""
          Index           =   -2147483648
-         indicator       =   0
+         Indicator       =   0
          Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
@@ -332,6 +337,7 @@ Begin WebPage SettingsPage
          ReadOnly        =   False
          Scope           =   2
          TabIndex        =   11
+         TabPanelIndex   =   0
          TabStop         =   True
          Text            =   ""
          TextAlignment   =   0
@@ -350,7 +356,7 @@ Begin WebPage SettingsPage
          FontSize        =   24.0
          Height          =   38
          Index           =   -2147483648
-         indicator       =   0
+         Indicator       =   0
          Italic          =   False
          Left            =   307
          LockBottom      =   False
@@ -391,16 +397,16 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub CheckUtils()
-		  Var shcommand As String
+		  Var shellcmd As String
 		  
 		  // The correct path must be used in Debug mode
 		  #If TargetMacOs And DebugBuild Then
-		    shcommand = "/opt/homebrew/bin/" //macOS
+		    shellcmd = "/opt/homebrew/bin/" //macOS
 		  #EndIf
 		  
 		  // check Homebrew
 		  Var sh As New Shell
-		  sh.Execute(shcommand+ "brew --version")
+		  sh.Execute(shellcmd+ "brew --version")
 		  
 		  If sh.ExitCode = 0 Then
 		    lblHomebrew.Text = "✅" + " Homebrew - " + sh.Result.Trim
@@ -409,7 +415,7 @@ End
 		  End If
 		  
 		  // check ghostscript
-		  sh.Execute(shcommand+ "gs --version")
+		  sh.Execute(shellcmd+ "gs --version")
 		  
 		  If sh.ExitCode = 0 Then
 		    lblGhostscript.Text = "✅" + " ghostscript - " + sh.Result.Trim
@@ -418,7 +424,7 @@ End
 		  End If
 		  
 		  // check poppler-utils
-		  sh.Execute(shcommand+ "pdftotext -v")
+		  sh.Execute(shellcmd+ "pdftotext -v")
 		  
 		  If sh.ExitCode = 0 Then
 		    lblPoppler.Text = "✅" + " pdftotext - " + sh.Result.Trim
@@ -427,7 +433,7 @@ End
 		  End If
 		  
 		  // check tesseract
-		  sh.Execute(shcommand+ "tesseract --version")
+		  sh.Execute(shellcmd+ "tesseract --version")
 		  
 		  If sh.ExitCode = 0 Then
 		    lblTesseract.Text = "✅" + " tesseract - " + sh.Result.Trim

@@ -108,7 +108,7 @@ Begin WebDialog ViewerDialog
       LockVertical    =   False
       MaximumCharactersAllowed=   0
       PanelIndex      =   0
-      ReadOnly        =   False
+      ReadOnly        =   True
       Scope           =   0
       TabIndex        =   6
       TabStop         =   True
@@ -142,7 +142,7 @@ Begin WebDialog ViewerDialog
       LockVertical    =   False
       MaximumCharactersAllowed=   0
       PanelIndex      =   0
-      ReadOnly        =   False
+      ReadOnly        =   True
       Scope           =   0
       TabIndex        =   7
       TabStop         =   True
@@ -176,7 +176,7 @@ Begin WebDialog ViewerDialog
       LockVertical    =   False
       MaximumCharactersAllowed=   0
       PanelIndex      =   0
-      ReadOnly        =   False
+      ReadOnly        =   True
       Scope           =   0
       TabIndex        =   8
       TabStop         =   True
@@ -210,7 +210,7 @@ Begin WebDialog ViewerDialog
       LockVertical    =   False
       MaximumCharactersAllowed=   0
       PanelIndex      =   0
-      ReadOnly        =   False
+      ReadOnly        =   True
       Scope           =   0
       TabIndex        =   9
       TabStop         =   True
@@ -243,7 +243,7 @@ Begin WebDialog ViewerDialog
       LockVertical    =   False
       MaximumCharactersAllowed=   0
       PanelIndex      =   0
-      ReadOnly        =   False
+      ReadOnly        =   True
       Scope           =   0
       TabIndex        =   11
       TabStop         =   True
@@ -351,45 +351,35 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Sub ShowPDFbyID(id As String)
-		  Var line As String
+		  Var rs As RowSet = Session.imcDB.FindFileByID(id)
 		  
-		  Var rs As RowSet
-		  rs = Session.imcDB.FindFileByID(id)
+		  Session.PDFFile = Nil
+		  Session.PDFFolderItem = Nil
+		  HTMLViewer1.LoadURL("about:blank")
+		  btnDownload.Enabled = False
+		  btnPrint.Enabled = False
 		  
 		  If rs <> Nil Then
 		    
 		    // Fill Fields
 		    edtFilename.Text = rs.Column("filename").StringValue
-		    edtAdded.Text = rs.Column("added").StringValue
-		    edtCreated.Text = rs.Column("created").StringValue
-		    edtModified.Text = rs.Column("modified").StringValue
+		    edtAdded.Text = rs.Column("created_at").StringValue
+		    edtCreated.Text = rs.Column("original_created_at").StringValue
+		    edtModified.Text = rs.Column("original_modified_at").StringValue
 		    edtContent.Text = rs.Column("content").StringValue
 		    
 		    // Load PDF
 		    Session.PDFFolderItem = App.documentFolder.Child(rs.Column("filename").StringValue)
 		    
-		    If Session.PDFFolderItem <> Nil Then
-		      If Session.PDFFolderItem.Exists Then
-		        
-		        Dim t As TextInputStream
-		        Try
-		          t = TextInputStream.Open(Session.PDFFolderItem)
-		          t.Encoding = Encodings.UTF8
-		          line = t.ReadAll 
-		        Catch e As IOException
-		          t.Close
-		          System.DebugLog("Error accessing file.")
-		        End Try
-		      End If
+		    // Preview
+		    If Session.PDFFolderItem <> Nil And Session.PDFFolderItem.Exists Then
+		      Session.PDFFile = WebFile.Open(Session.PDFFolderItem)
+		      Session.PDFFile.MIMEType = "application/pdf"
+		      Session.PDFFile.ForceDownload = False
+		      HTMLViewer1.LoadURL(Session.PDFFile.URL)
+		      btnDownload.Enabled = True
+		      btnPrint.Enabled = True
 		    End If
-		    
-		    Session.PDFFile = Nil
-		    Session.PDFFile = New WebFile
-		    Session.PDFFile.Data = line
-		    Session.PDFFile.MIMEType = "application/pdf"
-		    Session.PDFFile.Filename = rs.Column("filename").StringValue
-		    
-		    HTMLViewer1.LoadURL(Session.PDFFile.URL)
 		    
 		    rs.Close
 		  End If
@@ -424,14 +414,11 @@ End
 #tag Events btnDownload
 	#tag Event
 		Sub Pressed()
-		  Session.PDFFile = Nil
-		  Session.PDFFile = New WebFile
-		  
-		  Session.PDFFile.MIMEType = "application/pdf"
-		  Session.PDFFile = webfile.Open(Session.PDFFolderItem)
-		  Session.PDFFile.ForceDownload = True
-		  
-		  If Session.PDFFile.Download Then
+		  If Session.PDFFolderItem <> Nil And Session.PDFFolderItem.Exists Then
+		    Var downloadFile As WebFile = WebFile.Open(Session.PDFFolderItem)
+		    downloadFile.MIMEType = "application/pdf"
+		    downloadFile.ForceDownload = True
+		    Call downloadFile.Download
 		  End If
 		End Sub
 	#tag EndEvent

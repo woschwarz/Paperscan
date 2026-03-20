@@ -22,6 +22,18 @@ Inherits WebSession
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		mCompanyID As Integer = 1
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		mUserID As Integer = 1
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		mUserName As String = "Administrator"
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		PDFFile As WebFile
 	#tag EndProperty
 

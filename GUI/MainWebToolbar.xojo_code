@@ -3,11 +3,11 @@ Protected Class MainWebToolbar
 Inherits WebToolbar
 	#tag Event
 		Sub MenuSelected(item As WebToolbarButton, hitItem As WebMenuItem)
-		  If item.Tag = "User" Then
+		  If item.Tag = "user" Then
 		    
 		    Select Case hitItem.Tag
 		      
-		    Case "Settings"
+		    Case "settings"
 		      SettingsPage.Show
 		      
 		    Case "light"
@@ -107,6 +107,12 @@ Inherits WebToolbar
 		    
 		  End Select
 		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub TitlePressed()
+		  DashboardPage.Show
 		End Sub
 	#tag EndEvent
 

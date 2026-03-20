@@ -15,8 +15,8 @@ Inherits WebApplication
 		    // If this is called Paperscan then it does not need to be created (for Docker Containers)
 		    If f.Name <> "Paperscan" Then
 		      
-		      Var papserscanFolder As FolderItem = f.Child("Paperscan")
-		      If Not papserscanFolder.Exists Then papserscanFolder.CreateFolder
+		      Var paperscanFolder As FolderItem = f.Child("Paperscan")
+		      If Not paperscanFolder.Exists Then paperscanFolder.CreateFolder
 		      
 		      f = SpecialFolder.UserHome.Child("Paperscan")
 		      System.DebugLog("UserHome = " + f.NativePath)
@@ -74,12 +74,10 @@ Inherits WebApplication
 
 	#tag Note, Name = ToDo
 		- ParsePDF OCR
-		- Switch from Listbox to Grid with thumbnail
 		- User login
 		- More filter options
 		- Add Correspondent
 		- Add Logger
-		- Add Dashboard
 		- Add Settings Menu
 	#tag EndNote
 
